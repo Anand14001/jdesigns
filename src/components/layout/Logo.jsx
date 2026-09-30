@@ -1,6 +1,8 @@
-export default function Logo({ ariaLabel }) {
+import { Link } from "react-router";
+
+export default function Logo({ ariaLabel = "J Designs & Fashion Institute home" }) {
   return (
-    <a href="#home" className="inline-flex items-center gap-2.5 text-white" aria-label={ariaLabel}>
+    <Link to="/" className="inline-flex shrink-0 items-center gap-2.5 text-white" aria-label={ariaLabel}>
       <span className="grid size-8 place-items-center rounded-full bg-red text-[1.1rem] leading-none font-extrabold text-white md:size-9 md:text-xl">
         J
       </span>
@@ -8,6 +10,6 @@ export default function Logo({ ariaLabel }) {
         <strong className="text-lg font-medium tracking-[-0.01em] md:text-xl">J Designs</strong>
         <small className="text-[0.5625rem] font-extrabold tracking-[0.14em] uppercase">&amp; Fashion Institute</small>
       </span>
-    </a>
+    </Link>
   );
 }

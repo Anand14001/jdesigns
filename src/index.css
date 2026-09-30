@@ -44,13 +44,12 @@
   /* Fluid page gutter: 20px on phones, the original 1190px content width
      at 1440px, then growing proportionally (8.68vw) on wider screens. */
   --pad: max(20px, min((100vw - 1190px) / 2, 8.68vw));
-  --topbar-h: 0px;
-  --nav-h: 70px;
-  --header-h: calc(var(--topbar-h) + var(--nav-h));
+  /* Real height is measured by the header and set here at runtime */
+  --header-h: 100px;
   --section: 40px;
 }
 @media (min-width: 48rem) { :root { --section: 50px; } }
-@media (min-width: 62rem) { :root { --topbar-h: 34px; --section: 70px; } }
+@media (min-width: 62rem) { :root { --header-h: 140px; --section: 70px; } }
 
 /* Fluid type on large screens: 16px up to 1600px wide, growing to 20px on ultrawide */
 @media (min-width: 100rem) {
@@ -70,52 +69,36 @@
 }
 
 /* ---------------------------------------------------------
-   Page gutter + carousel (aligned to the same gutter)
+   Page gutter (Swiper carousels use the same gutter as padding,
+   so the first card lines up with the text and later cards bleed to the edge)
    --------------------------------------------------------- */
 @utility wrap {
   padding-inline: var(--pad);
 }
 
-@utility carousel {
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  padding-inline: var(--pad);
-  scroll-padding-inline: var(--pad);
-  &::-webkit-scrollbar { display: none; }
-}
-
-/* Card width in the carousel: 80% of phone width, 2.3 cards on tablets,
-   exactly 3 cards across the content width on desktop. */
-@utility carousel-cols {
-  grid-auto-columns: 80vw;
-  @media (min-width: 48rem) { grid-auto-columns: calc((100vw - 2 * var(--pad) - 30px) / 2.3); }
-  @media (min-width: 75rem) { grid-auto-columns: calc((100vw - 2 * var(--pad) - 60px) / 3); }
-}
 @utility no-scrollbar {
   scrollbar-width: none;
   &::-webkit-scrollbar { display: none; }
 }
 
 /* ---------------------------------------------------------
-   Reveal on scroll (fade up / slide from left, 600ms)
+   Motion (scroll reveals themselves run in GSAP)
    --------------------------------------------------------- */
-.reveal, .reveal-left {
-  opacity: 0;
-  transition: opacity .6s var(--ease-soft), transform .6s var(--ease-soft);
-}
-.reveal { transform: translateY(24px); }
-.reveal-left { transform: translateX(-30px); }
-.reveal.is-visible, .reveal-left.is-visible { opacity: 1; transform: none; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { from { opacity: 0; transform: translateY(16px) scale(.98); } to { opacity: 1; transform: none; } }
 
-/* Hero slides cross-fade */
-.slide { opacity: 0; visibility: hidden; transition: opacity .8s ease, visibility .8s; }
-.slide.is-active { opacity: 1; visibility: visible; }
+.modal-backdrop { animation: fade .25s ease; }
+.modal-panel { animation: pop .35s var(--ease-soft); }
+
+/* Hero photos zoom out slowly while their slide is showing */
+.hero-bg img { transform: scale(1.12); transition: transform 7s linear; }
+.hero .swiper-slide-active .hero-bg img { transform: scale(1); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal, .reveal-left { opacity: 1; transform: none; transition: none; }
-  .slide { transition: none; }
+  .hero-bg img { transform: none; transition: none; }
+  .modal-backdrop, .modal-panel { animation: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
 }
 
 /* ---------------------------------------------------------
@@ -140,5 +123,7 @@
   .notch::after { right: 150px; height: 138px; }
 }
 
-/* Long red arrow nudges right when its card is hovered */
+/* Card hover: long red arrow nudges right, photo zooms in gently */
 .pcard:hover .pcard-arrow svg { transform: translateX(10px); }
+.pcard-media img { transition: transform .7s var(--ease-soft); }
+.pcard:hover .pcard-media img { transform: scale(1.05); }

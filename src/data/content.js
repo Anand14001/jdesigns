@@ -1,4 +1,5 @@
 // All site copy lives here, word for word from the original index.html.
+// Stand-in photos and placeholder sections live separately in media.js.
 
 export const CONTACT = {
   phoneDisplay: "+91 99405 85875",
@@ -9,13 +10,14 @@ export const CONTACT = {
   location: "Poonamallee, Chennai, Tamil Nadu",
 };
 
-export const NAV_LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#courses", label: "Courses" },
-  { href: "#approach", label: "Approach" },
-  { href: "#founder", label: "Founder" },
-  { href: "#contact", label: "Contact" },
-];
+// Old one-page links (/#about …) and the page each one lives on now.
+export const LEGACY_ANCHORS = {
+  "#about": "/about/",
+  "#courses": "/courses/",
+  "#approach": "/courses/#approach",
+  "#founder": "/about/#founder",
+  "#contact": "/contact/",
+};
 
 export const HERO = {
   eyebrow: "Since 2011 · Poonamallee, Chennai",
@@ -69,6 +71,7 @@ export const COURSES = {
   items: [
     {
       icon: "intro",
+      slug: "introduction-to-tailoring",
       tag: "Start Here",
       title: "Introduction to Tailoring",
       text: "A gentle first step into tailoring for anyone who has never used a sewing machine.",
@@ -76,6 +79,7 @@ export const COURSES = {
     },
     {
       icon: "basic",
+      slug: "basic-tailoring",
       tag: "Foundation",
       title: "Basic Tailoring Course",
       text: "Core garment construction skills that every professional tailor relies on.",
@@ -83,6 +87,7 @@ export const COURSES = {
     },
     {
       icon: "blouse",
+      slug: "blouse-designing",
       badge: "Most Popular",
       title: "Blouse Designing",
       text: "Design and stitch well-fitted blouses, from simple styles to designer patterns.",
@@ -90,6 +95,7 @@ export const COURSES = {
     },
     {
       icon: "salwar",
+      slug: "salwar-maxi-kurti",
       tag: "Garments",
       title: "Salwar, Maxi & Kurti Stitching",
       ariaTitle: "Salwar, Maxi and Kurti Stitching",
@@ -98,6 +104,7 @@ export const COURSES = {
     },
     {
       icon: "aari",
+      slug: "aari-embroidery",
       tag: "Embroidery",
       title: "Aari Embroidery",
       text: "Master the traditional hook needle art behind bridal and designer blouses.",
@@ -166,20 +173,20 @@ export const FOOTER = {
     {
       title: "Courses",
       links: [
-        { href: "#courses", label: "Introduction to Tailoring" },
-        { href: "#courses", label: "Basic Tailoring" },
-        { href: "#courses", label: "Blouse Designing" },
-        { href: "#courses", label: "Salwar, Maxi & Kurti" },
-        { href: "#courses", label: "Aari Embroidery" },
+        { to: "/courses/introduction-to-tailoring/", label: "Introduction to Tailoring" },
+        { to: "/courses/basic-tailoring/", label: "Basic Tailoring" },
+        { to: "/courses/blouse-designing/", label: "Blouse Designing" },
+        { to: "/courses/salwar-maxi-kurti/", label: "Salwar, Maxi & Kurti" },
+        { to: "/courses/aari-embroidery/", label: "Aari Embroidery" },
       ],
     },
     {
       title: "Quick Links",
       links: [
-        { href: "#about", label: "About Us" },
-        { href: "#approach", label: "Our Approach" },
-        { href: "#founder", label: "Founder" },
-        { href: "#contact", label: "Contact" },
+        { to: "/about/", label: "About Us" },
+        { to: "/courses/#approach", label: "Our Approach" },
+        { to: "/about/#founder", label: "Founder" },
+        { to: "/contact/", label: "Contact" },
       ],
     },
     {
@@ -192,3 +199,30 @@ export const FOOTER = {
     },
   ],
 };
+
+// Main menu. Items with `mega` open a full-width panel on desktop
+// and an accordion on phones.
+export const NAV = [
+  {
+    label: "Courses",
+    to: "/courses/",
+    mega: "courses",
+    links: [
+      ...COURSES.items.map((c) => ({ to: `/courses/${c.slug}/`, label: c.title })),
+      { to: "/courses/#approach", label: "How You'll Learn" },
+    ],
+  },
+  {
+    label: "About Us",
+    to: "/about/",
+    mega: "about",
+    links: [
+      { to: "/about/", label: "About the Institute" },
+      { to: "/about/#mission", label: "Our Mission & Vision" },
+      { to: "/about/#founder", label: "Meet the Founder" },
+      { to: "/about/#facilities", label: "Facilities" },
+    ],
+  },
+  { label: "Student Work", to: "/#student-work" },
+  { label: "Contact", to: "/contact/" },
+];

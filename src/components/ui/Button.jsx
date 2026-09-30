@@ -1,28 +1,35 @@
+import { Link } from "react-router";
+
 const VARIANTS = {
   red: "bg-red border-red text-white hover:bg-red-dark hover:border-red-dark",
   outlineLight: "border-white/80 text-white hover:bg-white hover:text-black",
+  outlineDark: "border-black text-black hover:bg-black hover:text-white",
+  white: "bg-white border-white text-black hover:bg-red hover:border-red hover:text-white",
 };
 
 const SIZES = {
   md: "rounded-btn px-[22px] py-3 text-sm",
-  sm: "rounded-btn px-[18px] py-[9px] text-[0.8125rem]", // header "Enquire Now"
-  pill: "rounded-full px-4 py-[9px] text-[0.8125rem]", // mobile quick bar
+  sm: "rounded-btn px-[18px] py-[9px] text-[0.8125rem]",
+  pill: "rounded-full px-4 py-[9px] text-[0.8125rem]",
 };
 
 /**
- * Link styled as a button. External links (http) open in a new tab.
- * Pass `as="button"` for a form submit button.
+ * One button style for everything:
+ *  - `to="/courses/"`  page link (React Router)
+ *  - `href="tel:..."`  normal link (http links open in a new tab)
+ *  - neither           <button> (pass onClick, or type="submit")
  */
-export default function Button({ as: Tag = "a", variant = "red", size = "md", className = "", href, children, ...rest }) {
-  const external = href?.startsWith("http");
-  return (
-    <Tag
-      href={href}
-      {...(external ? { target: "_blank", rel: "noopener" } : {})}
-      className={`inline-flex cursor-pointer items-center justify-center border font-extrabold whitespace-nowrap transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-red ${SIZES[size]} ${VARIANTS[variant]} ${className}`}
-      {...rest}
-    >
-      {children}
-    </Tag>
-  );
+export default function Button({ to, href, variant = "red", size = "md", className = "", children, ...rest }) {
+  const classes = `inline-flex cursor-pointer items-center justify-center gap-2 border font-extrabold whitespace-nowrap transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-red disabled:cursor-wait disabled:opacity-60 ${SIZES[size]} ${VARIANTS[variant]} ${className}`;
+
+  if (to) return <Link to={to} className={classes} {...rest}>{children}</Link>;
+  if (href) {
+    const external = href.startsWith("http");
+    return (
+      <a href={href} className={classes} {...(external ? { target: "_blank", rel: "noopener" } : {})} {...rest}>
+        {children}
+      </a>
+    );
+  }
+  return <button type="button" className={classes} {...rest}>{children}</button>;
 }

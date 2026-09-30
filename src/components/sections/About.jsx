@@ -4,11 +4,11 @@ import { Card, CardBody, CardMedia } from "../ui/Card";
 import Reveal from "../ui/Reveal";
 import SectionTitle from "../ui/SectionTitle";
 
-export default function About() {
+export default function About({ showTitle = true }) {
   return (
     <section id="about" className="py-[var(--section)]">
       <div className="wrap">
-        <SectionTitle bold={ABOUT.title[0]} light={ABOUT.title[1]} sub={ABOUT.sub} />
+        {showTitle && <SectionTitle bold={ABOUT.title[0]} light={ABOUT.title[1]} sub={ABOUT.sub} className="mb-10" />}
 
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.4fr_0.8fr] lg:gap-[60px]">
           <Reveal className="[&_p]:mb-4 [&_p]:leading-[1.7]">
@@ -38,7 +38,7 @@ export default function About() {
 
           <Reveal aria-hidden="true" className="max-w-[26.25rem] lg:max-w-none">
             <Card>
-              <CardMedia square>
+              <CardMedia ratio="square" className="grid place-items-center">
                 <DressForm className="h-auto w-[62%]" />
               </CardMedia>
               <CardBody className="flex-row! items-baseline gap-3.5 px-8! py-6!">

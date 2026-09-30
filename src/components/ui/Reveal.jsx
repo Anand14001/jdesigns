@@ -1,14 +1,10 @@
-import { useInView } from "../../hooks/useInView";
-
 /**
- * Fades an element up (or slides it in from the left) when it scrolls into view.
- * Renders any tag via `as`, so it can wrap headings, list items, articles, etc.
+ * Marks an element to fade up (or slide in from the left) when it scrolls
+ * into view. The animation itself runs in useScrollAnimations (GSAP ScrollTrigger).
  */
-export default function Reveal({ as: Tag = "div", left = false, className = "", children, ...rest }) {
-  const [ref, inView] = useInView();
-  const base = left ? "reveal-left" : "reveal";
+export default function Reveal({ as: Tag = "div", left = false, children, ...rest }) {
   return (
-    <Tag ref={ref} className={`${base} ${inView ? "is-visible" : ""} ${className}`} {...rest}>
+    <Tag data-reveal={left ? "left" : "up"} {...rest}>
       {children}
     </Tag>
   );

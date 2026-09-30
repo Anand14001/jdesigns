@@ -116,3 +116,45 @@ export const COURSE_ICONS = {
     </>
   ),
 };
+
+/* ---------- Social icons (Lucide no longer ships brand logos) ---------- */
+export const InstagramIcon = (props) => (
+  <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+    <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" strokeWidth="1.8" />
+    <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
+    <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" />
+  </svg>
+);
+
+export const SOCIAL_ICONS = {
+  instagram: InstagramIcon,
+  facebook: (props) => (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21Z" fill="currentColor" />
+    </svg>
+  ),
+  youtube: (props) => (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3Z" fill="currentColor" />
+    </svg>
+  ),
+  linkedin: (props) => (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path d="M6.9 20H3.6V9.3h3.3ZM5.2 7.8a1.9 1.9 0 1 1 0-3.8 1.9 1.9 0 0 1 0 3.8ZM20.4 20h-3.3v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V20H10.1V9.3h3.2v1.5c.4-.8 1.5-1.7 3.1-1.7 3.3 0 4 2.2 4 5Z" fill="currentColor" />
+    </svg>
+  ),
+  x: (props) => (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path d="M17.8 3h3.1l-6.8 7.8 8 10.2h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.8 3h6.4l4.4 5.9Zm-1.1 16.2h1.7L7.3 4.7H5.5Z" fill="currentColor" />
+    </svg>
+  ),
+};
+
+export const SOCIAL_LABELS = { instagram: "Instagram", facebook: "Facebook", youtube: "YouTube", linkedin: "LinkedIn", x: "X" };
+
+export const PlayIcon = (props) => (
+  <svg viewBox="0 0 80 80" aria-hidden="true" {...props}>
+    <circle cx="40" cy="40" r="37" fill="none" stroke="currentColor" strokeWidth="4" />
+    <path d="M32 25v30l24-15Z" fill="currentColor" />
+  </svg>
+);

@@ -1,40 +1,55 @@
+import { useRef } from "react";
+import { Route, Routes, useLocation } from "react-router";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import SideActions from "./components/layout/SideActions";
-import About from "./components/sections/About";
-import Approach from "./components/sections/Approach";
-import Audience from "./components/sections/Audience";
-import Contact from "./components/sections/Contact";
-import Courses from "./components/sections/Courses";
-import Founder from "./components/sections/Founder";
-import Hero from "./components/sections/Hero";
-import MissionVision from "./components/sections/MissionVision";
-import Notice from "./components/sections/Notice";
-import QuickBar from "./components/sections/QuickBar";
-import Stats from "./components/sections/Stats";
+import SiteModals from "./components/overlays/SiteModals";
+import { useScrollAnimations } from "./hooks/useScrollAnimations";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import CourseDetailPage from "./pages/CourseDetailPage";
+import CoursesPage from "./pages/CoursesPage";
+import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import ScrollManager from "./site/ScrollManager";
+import { SiteProvider } from "./site/SiteContext";
+import { SmoothScrollProvider } from "./site/SmoothScroll";
 
-export default function App() {
+function Layout() {
+  const { pathname } = useLocation();
+  const mainRef = useRef(null);
+  useScrollAnimations(mainRef, pathname);
+
   return (
     <>
+      <a href="#main" className="sr-only z-[200] rounded-btn bg-red px-4 py-2 font-extrabold text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3">
+        Skip to content
+      </a>
+      <ScrollManager />
       <Header />
-      <main>
-        <Hero />
-        <Notice />
-        <QuickBar />
-        <Audience />
-        <Stats />
-        <About />
-        <div className="wrap">
-          <div className="notch" aria-hidden="true" />
-        </div>
-        <Courses />
-        <Approach />
-        <MissionVision />
-        <Founder />
-        <Contact />
+      <main id="main" ref={mainRef} tabIndex={-1} className="outline-none">
+        <Routes>
+          <Route index element={<HomePage />} />
+          <Route path="courses" element={<CoursesPage />} />
+          <Route path="courses/:slug" element={<CourseDetailPage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </main>
       <Footer />
       <SideActions />
+      <SiteModals />
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <SiteProvider>
+      <SmoothScrollProvider>
+        <Layout />
+      </SmoothScrollProvider>
+    </SiteProvider>
   );
 }
