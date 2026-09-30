@@ -57,7 +57,8 @@
 }
 
 @layer base {
-  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 10px); }
+  /* Smooth scrolling comes from Lenis; the native setting would fight it. */
+  html { scroll-padding-top: calc(var(--header-h) + 10px); }
   body {
     @apply bg-white font-sans font-light text-ink antialiased;
     padding-top: var(--header-h);
@@ -95,7 +96,6 @@
 .hero .swiper-slide-active .hero-bg img { transform: scale(1); }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   .hero-bg img { transform: none; transition: none; }
   .modal-backdrop, .modal-panel { animation: none; }
   *, *::before, *::after { transition-duration: .01ms !important; }

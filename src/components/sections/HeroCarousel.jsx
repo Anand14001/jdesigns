@@ -1,4 +1,4 @@
-import { Download, Pause, Play } from "lucide-react";
+import { Download } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { CONTACT, COURSES, HERO } from "../../data/content";
 import { HERO_IMAGES } from "../../data/media";
@@ -83,7 +83,6 @@ export default function HeroCarousel() {
   const swiperRef = useRef(null);
   const progressRef = useRef(null);
   const [active, setActive] = useState(0);
-  const [playing, setPlaying] = useState(true);
 
   const animateIn = useCallback((swiper) => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -104,16 +103,21 @@ export default function HeroCarousel() {
   );
 
   const goTo = (i) => swiperRef.current?.slideTo(i);
-  const togglePlay = () => {
-    const autoplay = swiperRef.current?.autoplay;
-    if (!autoplay) return;
-    if (playing) autoplay.stop();
-    else autoplay.start();
-    setPlaying(!playing);
+  // Autoplay pauses while the mouse is over the hero or keyboard focus is inside it.
+  const pause = () => swiperRef.current?.autoplay?.pause();
+  const resume = (e) => {
+    if (e.type === "blur" && e.currentTarget.contains(e.relatedTarget)) return;
+    swiperRef.current?.autoplay?.resume();
   };
 
   return (
-    <section aria-roledescription="carousel" aria-label="Highlights" className="hero relative overflow-hidden bg-hero text-white">
+    <section
+      aria-roledescription="carousel"
+      aria-label="Highlights"
+      onFocus={pause}
+      onBlur={resume}
+      className="hero relative overflow-hidden bg-hero text-white"
+    >
       <Slider
         label="Highlights"
         onReady={onReady}
@@ -138,8 +142,8 @@ export default function HeroCarousel() {
         ))}
       </Slider>
 
-      {/* Slide tabs with autoplay progress + pause */}
-      <div className="wrap absolute inset-x-0 bottom-6 z-10 flex items-end gap-4 md:bottom-10">
+      {/* Slide tabs with autoplay progress */}
+      <div className="wrap absolute inset-x-0 bottom-6 z-10 md:bottom-10">
         <div className="flex flex-1 gap-3 md:max-w-[38rem] md:gap-5" role="group" aria-label="Choose slide">
           {SLIDES.map((s, i) => (
             <button
@@ -157,22 +161,12 @@ export default function HeroCarousel() {
                 <span
                   ref={active === i ? progressRef : undefined}
                   className={`absolute inset-y-0 left-0 w-full origin-left bg-red ${active === i ? "" : "scale-x-0"}`}
-                  style={active === i ? { transform: reduceMotion || !playing ? "none" : "scaleX(var(--progress, 0))" } : undefined}
+                  style={active === i ? { transform: reduceMotion ? "none" : "scaleX(var(--progress, 0))" } : undefined}
                 />
               </span>
             </button>
           ))}
         </div>
-        {!reduceMotion && (
-          <button
-            type="button"
-            onClick={togglePlay}
-            aria-label={playing ? "Pause slideshow" : "Play slideshow"}
-            className="grid size-10 shrink-0 cursor-pointer place-items-center rounded-full border border-white/50 bg-transparent p-0 text-white hover:border-white"
-          >
-            {playing ? <Pause className="size-4" /> : <Play className="size-4" />}
-          </button>
-        )}
       </div>
     </section>
   );

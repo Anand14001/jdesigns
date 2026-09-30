@@ -1,15 +1,17 @@
 import { Link } from "react-router";
+import { asset } from "../../lib/paths";
 
-export default function Logo({ ariaLabel = "J Designs & Fashion Institute home" }) {
+/** The institute's logo (public/images/j-designs-logo.webp, a web-sized copy of j_designs_logo.png). */
+export default function Logo({ ariaLabel = "J Designs & Fashion Institute home", className = "" }) {
   return (
-    <Link to="/" className="inline-flex shrink-0 items-center gap-2.5 text-white" aria-label={ariaLabel}>
-      <span className="grid size-8 place-items-center rounded-full bg-red text-[1.1rem] leading-none font-extrabold text-white md:size-9 md:text-xl">
-        J
-      </span>
-      <span className="flex flex-col leading-[1.05]">
-        <strong className="text-lg font-medium tracking-[-0.01em] md:text-xl">J Designs</strong>
-        <small className="text-[0.5625rem] font-extrabold tracking-[0.14em] uppercase">&amp; Fashion Institute</small>
-      </span>
+    <Link to="/" className={`inline-flex shrink-0 items-center ${className}`} aria-label={ariaLabel}>
+      <img
+        src={asset("images/j-designs-logo.webp")}
+        alt="J Designs Fashion Institute"
+        width="496"
+        height="160"
+        className="block h-10 w-auto md:h-12"
+      />
     </Link>
   );
 }

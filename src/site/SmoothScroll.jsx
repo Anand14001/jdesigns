@@ -39,14 +39,12 @@ export const headerOffset = () => (document.querySelector("[data-site-header]")?
 export function scrollToTarget(lenis, target, { immediate = false } = {}) {
   if (target == null) {
     if (lenis) lenis.scrollTo(0, { immediate: true, force: true });
-    else window.scrollTo(0, 0);
+    else window.scrollTo({ top: 0, behavior: "instant" });
     return;
   }
-  const offset = -headerOffset();
-  if (lenis) {
-    lenis.scrollTo(target, { offset, immediate, force: true });
-  } else {
-    const top = target.getBoundingClientRect().top + window.scrollY + offset;
-    window.scrollTo({ top, behavior: immediate ? "auto" : "smooth" });
-  }
+  // Work out the pixel position from the real scroll position (Lenis's own
+  // value can lag behind on first load), then hand Lenis a number.
+  const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset());
+  if (lenis) lenis.scrollTo(top, { immediate, force: true });
+  else window.scrollTo({ top, behavior: immediate ? "instant" : "smooth" });
 }

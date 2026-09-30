@@ -29,7 +29,6 @@ Temporary photos used until the institute's own photos are ready. All are public
 | threads-pile.webp | Free colorful sewing thread spools | CC0 1.0 (public domain dedication) | https://www.rawpixel.com/image/5909056/image-public-domain-free-color |
 | threads-glass.webp | Free colorful sewing thread spools | CC0 1.0 (public domain dedication) | https://www.rawpixel.com/image/5912673/image-public-domain-free-color |
 | threads-wood.webp | Free colorful sewing thread spools | CC0 1.0 (public domain dedication) | https://www.rawpixel.com/image/5922269/photo-image-public-domain-free-color |
-| tapes.webp | Colorful Measure tape isolated on white background | CC0 1.0 (public domain dedication) | https://www.flickr.com/photos/155753322@N06/41903827290 |
 | threads-row.webp | Thread Spools | CC0 1.0 (public domain dedication) | https://stocksnap.io/photo/thread-spools-OT78IG5U1C |
 | thimble.webp | Free colorful sewing thread spools | CC0 1.0 (public domain dedication) | https://www.rawpixel.com/image/5916189/image-public-domain-free-color |
 | yarn.webp | Tell me a Yarn. | CC0 1.0 (public domain dedication) | https://www.flickr.com/photos/88123769@N02/14996784845 |
@@ -37,6 +36,5 @@ Temporary photos used until the institute's own photos are ready. All are public
 | threads-circle.webp | A striking circular arrangement of bright pink and orange thread spools creates a strong geometric pattern. The repeated shapes form concentric rings around the center, producing an eye-catching abstract composition. Captured at Chhatrapati Shivaji Maharaj Vastu Sangrahalaya, Mumbai, Maharashtra. | CC0 1.0 (public domain dedication) | https://wordpress.org/photos/photo/3796a775c6/ |
 | machine.webp | Vintage sewing machine | Public Domain Mark | https://www.flickr.com/photos/96780967@N06/27000742647 |
 | machine-vintage.webp | Vintage Sewing Machine at the Antique Row District in Pomona Ca. | Public Domain Mark | https://www.flickr.com/photos/152628868@N03/35533950130 |
-| fabric-bolts.webp | Bolts of fabric. | CC0 1.0 (public domain dedication) | https://www.flickr.com/photos/88123769@N02/15012162252 |
 | bobbins.webp | Pile multicolored craft threads spools | CC0 1.0 (public domain dedication) | https://www.rawpixel.com/image/3284654/free-photo-image-sewing-seamstress-craft |
 | spools.webp | Free colorful sewing thread spools | CC0 1.0 (public domain dedication) | https://www.rawpixel.com/image/5916170/image-public-domain-free-color |

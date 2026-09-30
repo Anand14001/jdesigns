@@ -20,7 +20,7 @@ export default function Audience() {
   return (
     <section className="pt-[50px] pb-[var(--section)]">
       <div className="wrap">
-        <SectionTitle bold={AUDIENCE.title[0]} light={AUDIENCE.title[1]} sub={AUDIENCE.sub} />
+        <SectionTitle bold={AUDIENCE.title[0]} light={AUDIENCE.title[1]} sub={AUDIENCE.sub} className="mb-10" />
 
         <div
           ref={rowRef}

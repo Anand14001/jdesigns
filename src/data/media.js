@@ -25,7 +25,7 @@ export const COURSE_IMAGES = {
 
 /** Top banners of the inner pages. */
 export const PAGE_BANNERS = {
-  courses: stand("fabric-bolts"),
+  courses: stand("spools"),
   about: stand("threads-pile"),
   contact: stand("threads-row"),
 };
@@ -64,7 +64,7 @@ export const INSTAGRAM = {
   handle: "",
   url: "",
   posts: [
-    stand("threads-pile"), stand("course-aari"), stand("tapes"), stand("threads-glass"),
+    stand("threads-pile"), stand("course-aari"), stand("yarn"), stand("threads-glass"),
     stand("sewing-kit"), stand("threads-wood"), stand("thimble"), stand("threads-circle"),
   ],
 };

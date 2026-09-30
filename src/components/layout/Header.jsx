@@ -173,20 +173,17 @@ export default function Header() {
             </ul>
           </nav>
 
-          <Button size="sm" onClick={() => openEnquiry()} className="hidden lg:inline-flex">
+          <Button size="sm" onClick={() => openEnquiry()} className="hidden! lg:inline-flex!">
             Enquire Now
           </Button>
 
-          <a href={CONTACT.phoneHref} aria-label={`Call ${CONTACT.phoneDisplay}`} className="ml-auto grid size-10 place-items-center text-white lg:hidden">
-            <Phone className="size-6" />
-          </a>
           <button
             type="button"
             onClick={() => setDrawer(true)}
             aria-label="Open menu"
             aria-expanded={drawer}
             aria-controls="mobile-menu"
-            className="grid size-10 cursor-pointer place-items-center border-0 bg-transparent p-0 text-white lg:hidden"
+            className="ml-auto grid size-10 cursor-pointer place-items-center border-0 bg-transparent p-0 text-white lg:hidden"
           >
             <Menu className="size-7" />
           </button>
@@ -202,7 +199,7 @@ export default function Header() {
       {/* Dim the page behind an open mega menu */}
       <div
         aria-hidden="true"
-        onMouseEnter={() => setMega(null)}
+        onClick={() => setMega(null)}
         className={`fixed inset-0 z-40 hidden bg-black/50 transition-opacity duration-300 lg:block ${mega ? "opacity-100" : "pointer-events-none opacity-0"}`}
       />
 

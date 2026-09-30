@@ -20,7 +20,9 @@ const SIZES = {
  *  - neither           <button> (pass onClick, or type="submit")
  */
 export default function Button({ to, href, variant = "red", size = "md", className = "", children, ...rest }) {
-  const classes = `inline-flex cursor-pointer items-center justify-center gap-2 border font-extrabold whitespace-nowrap transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-red disabled:cursor-wait disabled:opacity-60 ${SIZES[size]} ${VARIANTS[variant]} ${className}`;
+  const hasDisplay = /(?:^|\s)(?:hidden|block|inline-block|flex|inline-flex|grid)(?:!|\b)/.test(className);
+  const baseDisplay = hasDisplay ? "" : "inline-flex ";
+  const classes = `${baseDisplay}cursor-pointer items-center justify-center gap-2 border font-extrabold whitespace-nowrap transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-red disabled:cursor-wait disabled:opacity-60 ${SIZES[size]} ${VARIANTS[variant]} ${className}`;
 
   if (to) return <Link to={to} className={classes} {...rest}>{children}</Link>;
   if (href) {

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { LEGACY_ANCHORS } from "../data/content";
 import { routeFor } from "../data/routes";
@@ -13,10 +13,16 @@ export default function ScrollManager() {
   const { pathname, hash, key } = useLocation();
   const navigate = useNavigate();
   const lenis = useLenis();
+  const lenisRef = useRef(lenis);
+  const firstLoad = useRef(true);
 
-  useLayoutEffect(() => {
-    if (pathname === "/" && LEGACY_ANCHORS[hash]) navigate(LEGACY_ANCHORS[hash], { replace: true });
-  }, [pathname, hash, navigate]);
+  useEffect(() => {
+    lenisRef.current = lenis;
+  }, [lenis]);
+
+  useEffect(() => {
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  }, []);
 
   useEffect(() => {
     const route = routeFor(pathname);
@@ -25,18 +31,42 @@ export default function ScrollManager() {
   }, [pathname]);
 
   useEffect(() => {
-    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-    if (!hash) {
-      scrollToTarget(lenis, null);
+    // Old one-page link: go to the page it lives on now.
+    if (pathname === "/" && LEGACY_ANCHORS[hash]) {
+      navigate(LEGACY_ANCHORS[hash], { replace: true });
       return;
     }
+
+    const initial = firstLoad.current;
+
+    if (!hash) {
+      firstLoad.current = false;
+      scrollToTarget(lenisRef.current, null);
+      return;
+    }
+
+    const find = () => document.getElementById(decodeURIComponent(hash.slice(1)));
     // Wait a frame so the new page has rendered before looking for the anchor.
-    const id = requestAnimationFrame(() => {
-      const el = document.getElementById(decodeURIComponent(hash.slice(1)));
-      if (el) scrollToTarget(lenis, el);
+    // When a page is opened directly at an #anchor, jump there instantly and
+    // correct once images above it have loaded.
+    const frame = requestAnimationFrame(() => {
+      firstLoad.current = false;
+      const el = find();
+      if (el) scrollToTarget(lenisRef.current, el, { immediate: initial });
     });
-    return () => cancelAnimationFrame(id);
-  }, [pathname, hash, key, lenis]);
+    const settle = () => {
+      const el = find();
+      if (el) scrollToTarget(lenisRef.current, el, { immediate: true });
+    };
+    if (initial) {
+      if (document.readyState === "complete") setTimeout(settle, 300);
+      else window.addEventListener("load", settle, { once: true });
+    }
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("load", settle);
+    };
+  }, [pathname, hash, key, navigate]);
 
   // Recalculate scroll animations once images on the new page have loaded.
   useEffect(() => {

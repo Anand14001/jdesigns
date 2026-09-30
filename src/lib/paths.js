@@ -4,7 +4,8 @@
 function siteRoot() {
   if (import.meta.env.DEV) return "/";
   const url = import.meta.url;
-  return new URL(url.slice(0, url.lastIndexOf("/assets/") + 1)).pathname;
+  // Collapse repeated slashes (example.com//) so paths never become "//images/…".
+  return new URL(url.slice(0, url.lastIndexOf("/assets/") + 1)).pathname.replace(/\/{2,}/g, "/");
 }
 
 export const SITE_ROOT = siteRoot();

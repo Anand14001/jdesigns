@@ -52,7 +52,7 @@ export default function Achievements() {
           role="tabpanel"
           aria-labelledby={`ach-tab-${tab}`}
           key={group.label}
-          className="no-scrollbar -mx-5 m-0 grid animate-[fade_.45s_ease] snap-x snap-mandatory auto-cols-[82%] grid-flow-col gap-4 overflow-x-auto list-none px-5 py-0
+          className="no-scrollbar -mx-5 grid animate-[fade_.45s_ease] snap-x snap-mandatory scroll-px-5 md:scroll-px-0 auto-cols-[82%] grid-flow-col gap-4 overflow-x-auto list-none px-5 py-0
             md:mx-0 md:grid-flow-row md:grid-cols-3 md:gap-[30px] md:overflow-visible md:px-0"
         >
           {group.items.map((item) => (
