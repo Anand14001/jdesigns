@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------
+   Design tokens (from the original css/style.css)
+   --------------------------------------------------------- */
+@theme {
+  --color-red: #ef4637;
+  --color-red-dark: #d63a2c;
+  --color-ink: #212529;
+  --color-line: #e0e0e0;
+  --color-muted: #707070;
+  --color-band: #f4f4f2;
+  --color-media: #a9a9a9;
+  --color-navy: #2e2b3f;
+  --color-hero: #070707;
+
+  --font-sans: "Figtree", "Avenir Next", Avenir, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Font sizes only — line-height comes from the base styles
+     (body 1.5, headings 1.2), exactly like the original CSS. */
+  --text-*: initial;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+
+  /* Original breakpoints: 767 / 991 / 1200px */
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 62rem;
+  --breakpoint-xl: 75rem;
+
+  --radius-card: 24px;
+  --radius-btn: 6px;
+
+  --ease-soft: cubic-bezier(.2, .7, .2, 1);
+}
+
+/* ---------------------------------------------------------
+   Layout variables
+   --------------------------------------------------------- */
+:root {
+  /* Fluid page gutter: 20px on phones, the original 1190px content width
+     at 1440px, then growing proportionally (8.68vw) on wider screens. */
+  --pad: max(20px, min((100vw - 1190px) / 2, 8.68vw));
+  --topbar-h: 0px;
+  --nav-h: 70px;
+  --header-h: calc(var(--topbar-h) + var(--nav-h));
+  --section: 40px;
+}
+@media (min-width: 48rem) { :root { --section: 50px; } }
+@media (min-width: 62rem) { :root { --topbar-h: 34px; --section: 70px; } }
+
+/* Fluid type on large screens: 16px up to 1600px wide, growing to 20px on ultrawide */
+@media (min-width: 100rem) {
+  html { font-size: min(20px, calc(16px + (100vw - 1600px) * 0.00417)); }
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 10px); }
+  body {
+    @apply bg-white font-sans font-light text-ink antialiased;
+    padding-top: var(--header-h);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { @apply font-medium text-ink; line-height: 1.2; }
+  strong, b { @apply font-extrabold; }
+}
+
+/* ---------------------------------------------------------
+   Page gutter + carousel (aligned to the same gutter)
+   --------------------------------------------------------- */
+@utility wrap {
+  padding-inline: var(--pad);
+}
+
+@utility carousel {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-inline: var(--pad);
+  scroll-padding-inline: var(--pad);
+  &::-webkit-scrollbar { display: none; }
+}
+
+/* Card width in the carousel: 80% of phone width, 2.3 cards on tablets,
+   exactly 3 cards across the content width on desktop. */
+@utility carousel-cols {
+  grid-auto-columns: 80vw;
+  @media (min-width: 48rem) { grid-auto-columns: calc((100vw - 2 * var(--pad) - 30px) / 2.3); }
+  @media (min-width: 75rem) { grid-auto-columns: calc((100vw - 2 * var(--pad) - 60px) / 3); }
+}
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+/* ---------------------------------------------------------
+   Reveal on scroll (fade up / slide from left, 600ms)
+   --------------------------------------------------------- */
+.reveal, .reveal-left {
+  opacity: 0;
+  transition: opacity .6s var(--ease-soft), transform .6s var(--ease-soft);
+}
+.reveal { transform: translateY(24px); }
+.reveal-left { transform: translateX(-30px); }
+.reveal.is-visible, .reveal-left.is-visible { opacity: 1; transform: none; }
+
+/* Hero slides cross-fade */
+.slide { opacity: 0; visibility: hidden; transition: opacity .8s ease, visibility .8s; }
+.slide.is-active { opacity: 1; visibility: visible; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .reveal-left { opacity: 1; transform: none; transition: none; }
+  .slide { transition: none; }
+}
+
+/* ---------------------------------------------------------
+   Notch divider: line + navy triangle + thin diagonal
+   --------------------------------------------------------- */
+.notch { position: relative; height: 50px; border-top: 3px solid var(--color-navy); }
+.notch::before {
+  content: ""; position: absolute; right: 0; top: -1px;
+  width: 100px; height: 50px;
+  background: var(--color-navy);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+.notch::after {
+  content: ""; position: absolute; right: 95px; top: 0;
+  width: 1px; height: 90px;
+  background: var(--color-navy);
+  transform-origin: top; transform: rotate(-42deg);
+}
+@media (min-width: 48rem) {
+  .notch { height: 80px; }
+  .notch::before { width: 158px; height: 80px; }
+  .notch::after { right: 150px; height: 138px; }
+}
+
+/* Long red arrow nudges right when its card is hovered */
+.pcard:hover .pcard-arrow svg { transform: translateX(10px); }
