@@ -9,14 +9,14 @@ export const ArrowLong = (props) => (
 
 export const CirclePrev = (props) => (
   <svg viewBox="0 0 60 40" aria-hidden="true" {...props}>
-    <circle cx="20" cy="20" r="18.5" fill="none" stroke="#ef4637" />
+    <circle cx="20" cy="20" r="18.5" fill="none" stroke="#662D91" />
     <path d="M10 20h46M18 12l-8 8 8 8" fill="none" stroke="currentColor" strokeWidth="2" />
   </svg>
 );
 
 export const CircleNext = (props) => (
   <svg viewBox="0 0 60 40" aria-hidden="true" {...props}>
-    <circle cx="40" cy="20" r="18.5" fill="none" stroke="#ef4637" />
+    <circle cx="40" cy="20" r="18.5" fill="none" stroke="#662D91" />
     <path d="M4 20h46M42 12l8 8-8 8" fill="none" stroke="currentColor" strokeWidth="2" />
   </svg>
 );

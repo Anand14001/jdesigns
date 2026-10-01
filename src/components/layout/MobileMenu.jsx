@@ -59,7 +59,7 @@ export default function MobileMenu({ open, onClose }) {
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex h-[64px] shrink-0 items-center justify-between border-b border-white/15 px-5">
+        <div className="flex h-[72px] shrink-0 items-center justify-between border-b border-white/15 px-5">
           <Logo />
           <button type="button" onClick={onClose} aria-label="Close menu" className="grid size-10 cursor-pointer place-items-center border-0 bg-transparent p-0 text-white">
             <X className="size-7" />

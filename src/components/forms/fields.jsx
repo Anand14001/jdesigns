@@ -1,7 +1,7 @@
 import { CONTACT_SECTION } from "../../data/content";
 
 const input =
-  "w-full rounded-btn border bg-white px-3.5 py-3 text-base text-ink transition-[border-color,box-shadow] duration-200 focus:border-black focus:shadow-[0_0_0_3px_rgba(239,70,55,.2)] focus:outline-none";
+  "w-full rounded-btn border bg-white px-3.5 py-3 text-base text-ink transition-[border-color,box-shadow] duration-200 focus:border-black focus:shadow-[0_0_0_3px_rgba(102,45,145,.2)] focus:outline-none";
 const labelCls = "mt-4 mb-1.5 block text-sm font-medium";
 
 export const nameRules = {

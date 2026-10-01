@@ -18,14 +18,14 @@ export function Hoop({ className }) {
           <circle r="104" />
         </g>
         <g id="petals">
-          <path d="M0 -20 C 22 -48, 22 -78, 0 -96 C -22 -78, -22 -48, 0 -20Z" fill="#ef4637" />
+          <path d="M0 -20 C 22 -48, 22 -78, 0 -96 C -22 -78, -22 -48, 0 -20Z" fill="#662D91" />
           <path d="M0 -30 C 12 -50, 12 -70, 0 -82 C -12 -70, -12 -50, 0 -30Z" fill="#ffffff" />
         </g>
         {PETAL_ANGLES.map((a) => (
           <use key={a} href="#petals" transform={`rotate(${a})`} />
         ))}
         <circle r="24" fill="#ffffff" />
-        <circle r="14" fill="#ef4637" />
+        <circle r="14" fill="#662D91" />
         <g fill="#ffffff">
           {CENTRE_DOTS.map(([cx, cy]) => (
             <circle key={`${cx},${cy}`} r="3" cx={cx} cy={cy} />
@@ -37,7 +37,7 @@ export function Hoop({ className }) {
           ))}
         </g>
       </g>
-      <path d="M300 330 C 350 300, 380 250, 360 200" fill="none" stroke="#ef4637" strokeWidth="2.5" />
+      <path d="M300 330 C 350 300, 380 250, 360 200" fill="none" stroke="#662D91" strokeWidth="2.5" />
       <g transform="rotate(-35 330 320)">
         <rect x="262" y="317" width="120" height="5" rx="2.5" fill="#b5b5b5" />
         <ellipse cx="372" cy="319.5" rx="6" ry="2" fill="#141414" />
@@ -55,7 +55,7 @@ export function DressForm({ className }) {
       <path d="M95 50 C 120 40, 180 40, 205 50 C 212 58, 216 68, 217 80 C 180 70, 120 70, 83 80 C 84 68, 88 58, 95 50Z" fill="#2b2b2b" />
       <path d="M150 55 V 305" stroke="#ffffff" strokeWidth="2" strokeDasharray="6 6" />
       <path d="M96 140 C 130 150, 170 150, 204 140" stroke="#ffffff" strokeWidth="2" strokeDasharray="6 6" fill="none" />
-      <g fill="#ef4637">
+      <g fill="#662D91">
         <circle cx="150" cy="95" r="4" />
         <circle cx="150" cy="120" r="4" />
         <circle cx="150" cy="170" r="4" />

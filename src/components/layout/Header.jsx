@@ -129,7 +129,7 @@ export default function Header() {
         </div>
 
         {/* Logo + menu */}
-        <div className="wrap flex h-[64px] items-center gap-5 lg:h-[70px]">
+        <div className="wrap flex h-[72px] items-center gap-5 lg:h-[88px]">
           <Logo />
 
           <nav aria-label="Main navigation" className="ml-auto hidden h-full lg:block">
