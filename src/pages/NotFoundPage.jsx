@@ -4,7 +4,7 @@ export default function NotFoundPage() {
   return (
     <section className="py-[calc(var(--section)*2)]">
       <div className="wrap max-w-3xl">
-        <p className="mb-2 text-sm font-extrabold text-red">404</p>
+        <p className="mb-2 text-sm font-extrabold text-violet">404</p>
         <h1 className="mb-4 text-[2.25rem] font-light md:text-5xl">
           <b className="font-extrabold">Page</b> not found
         </h1>

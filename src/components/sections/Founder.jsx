@@ -16,10 +16,10 @@ export default function Founder({ teaser = false }) {
         <div className="mt-[30px] grid grid-cols-1 items-center gap-10 lg:grid-cols-[23.5625rem_1fr] lg:gap-[60px]">
           <Reveal className="max-w-[26.25rem] lg:max-w-none">
             <Card>
-              <CardMedia ratio="square" image={FOUNDER_PHOTO || undefined} alt={FOUNDER.name} className="bg-media!">
+              <CardMedia ratio="square" image={FOUNDER_PHOTO || undefined} alt={FOUNDER.name} imgClassName="object-top" className="bg-media!">
                 {!FOUNDER_PHOTO && (
                   <div className="absolute inset-0 grid place-items-center" aria-hidden="true">
-                    <div className="grid aspect-square w-[64%] place-items-center rounded-full bg-black text-[clamp(4rem,8vw,6rem)] font-extrabold text-white">
+                    <div className="grid aspect-square w-[64%] place-items-center rounded-full bg-plum text-[clamp(4rem,8vw,6rem)] font-extrabold text-white">
                       SJ
                     </div>
                   </div>
@@ -33,12 +33,12 @@ export default function Founder({ teaser = false }) {
           </Reveal>
 
           <Reveal>
-            <blockquote className="m-0 mb-[26px] border-l-4 border-red pl-[26px] text-xl leading-[1.4] font-light text-ink md:text-[1.625rem]">
+            <blockquote className="m-0 mb-[26px] border-l-4 border-violet pl-[26px] text-xl leading-[1.4] font-light text-ink md:text-[1.625rem]">
               {FOUNDER.quote}
             </blockquote>
             {teaser ? (
-              <Link to="/about/#founder" className="inline-flex items-center gap-2 font-extrabold text-ink hover:text-red">
-                Read more about {FOUNDER.name} <ArrowRight className="size-5 text-red" />
+              <Link to="/about/#founder" className="inline-flex items-center gap-2 font-extrabold text-ink hover:text-violet">
+                Read more about {FOUNDER.name} <ArrowRight className="size-5 text-violet" />
               </Link>
             ) : (
               <p className="leading-[1.7] text-muted">{FOUNDER.bio}</p>

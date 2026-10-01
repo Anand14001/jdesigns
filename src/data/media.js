@@ -10,6 +10,7 @@
 // ---------------------------------------------------------------------------
 
 const stand = (name) => `images/stand-in/${name}.webp`;
+const gallery = (n) => `images/stand-in/Gallery${n}.jpg`;
 
 /** Hero slider backgrounds, in slide order. */
 export const HERO_IMAGES = [stand("hero-silks"), stand("hero-threads"), stand("course-blouse")];
@@ -30,22 +31,32 @@ export const PAGE_BANNERS = {
   contact: stand("threads-row"),
 };
 
-/** Photos in the "J Designs Advantage" and "About the Institute" sections. */
+/** Photos in the "Why Choose J Designs?" and "About the Institute" sections. */
 export const ADVANTAGE_IMAGES = [stand("kit-dark"), stand("scissors-thread")];
 export const ABOUT_IMAGE = stand("hero-dressforms");
 
 /** Founder photo. Leave "" to show her initials instead. */
-export const FOUNDER_PHOTO = "";
+export const FOUNDER_PHOTO = "images/stand-in/founder.jpg";
 
 /** Course brochure (PDF in public/, e.g. "brochure.pdf").
  *  While empty, the "Download Brochure" form asks for it on WhatsApp instead. */
 export const BROCHURE_URL = "";
 
-/** Footer "Follow Us" links. Empty ones are hidden. */
+/** Social accounts, shown in the footer and on the Contact page.
+ *
+ *  Paste the full address of each page, exactly as it appears in the browser
+ *  bar when you are looking at your own profile. For example:
+ *    instagram: "https://www.instagram.com/jdesigns.institute/",
+ *    facebook:  "https://www.facebook.com/jdesignsinstitute",
+ *    youtube:   "https://www.youtube.com/@jdesignsinstitute",
+ *
+ *  An account you do not have yet stays "" and is simply left off the page --
+ *  no empty circle, no dead link. If none are filled in, the whole "Follow us"
+ *  block disappears. */
 export const SOCIAL = {
-  instagram: "",
-  facebook: "",
-  youtube: "",
+  instagram: "https://www.instagram.com/j_designs_institution",
+  facebook: "https://www.facebook.com/people/J-Designs-Institution/61582163956008/",
+  youtube: "https://www.youtube.com/@jdesignsandinstitution",
 };
 
 /** "Student Work" gallery (Pearl's Student Outcomes). */
@@ -59,13 +70,17 @@ export const STUDENT_WORK = [
   { image: stand("work-dress-brown"), title: "Salwar, Maxi & Kurti" },
 ];
 
-/** "Latest From Instagram". Add your handle and profile link to show the Follow button. */
+/** "Photo Gallery" grid. The profile link comes from SOCIAL.instagram above, so
+ *  it only ever has to be typed once; add `handle` to show @name and the Follow
+ *  button under the heading. */
 export const INSTAGRAM = {
-  handle: "",
-  url: "",
+  handle: "j_designs_institution",
+  get url() {
+    return SOCIAL.instagram;
+  },
   posts: [
-    stand("threads-pile"), stand("course-aari"), stand("yarn"), stand("threads-glass"),
-    stand("sewing-kit"), stand("threads-wood"), stand("thimble"), stand("threads-circle"),
+    gallery(1), gallery(2), gallery(3), gallery(4),
+    gallery(5), gallery(6), gallery(7), gallery(8),
   ],
 };
 
@@ -98,11 +113,19 @@ export const FACILITIES = [
   { image: stand("bobbins"), title: "Tools & Threads", text: "Tools, fabrics & basic hand stitches" },
 ];
 
-/** "Video Gallery". Add a YouTube video id (the part after v= in the link) to make a card play.
- *  Cards without an id show a "coming soon" note with a WhatsApp link. */
-export const VIDEOS = [
-  { youtubeId: "", title: "Aari Embroidery", image: stand("course-aari") },
-  { youtubeId: "", title: "Blouse Designing", image: stand("sketch") },
-  { youtubeId: "", title: "Introduction to Tailoring", image: stand("course-intro") },
-  { youtubeId: "", title: "Salwar, Maxi & Kurti Stitching", image: stand("course-salwar") },
+/** "Testimonials": student videos, shot upright like a Reel or Short.
+ *
+ *  `youtubeId` is the code at the end of the link. For
+ *  youtube.com/shorts/O8fO88yCt_k   it is "O8fO88yCt_k";
+ *  youtube.com/watch?v=O8fO88yCt_k  it is also "O8fO88yCt_k";
+ *  youtu.be/O8fO88yCt_k             it is also "O8fO88yCt_k".
+ *
+ *  `title` is the student, `role` the course she took. `image` is optional --
+ *  leave it out and YouTube's own still for that video is used. */
+export const TESTIMONIALS = [
+  { youtubeId: "", title: "Sasikala R", role: "Aari Embroidery", image: stand("course-aari") },
+  { youtubeId: "", title: "Krithika M", role: "Blouse Designing", image: stand("sketch") },
+  { youtubeId: "", title: "Neelima S", role: "Basic Tailoring", image: stand("course-basic") },
+  { youtubeId: "", title: "Anitha K", role: "Salwar, Maxi & Kurti", image: stand("course-salwar") },
+  { youtubeId: "", title: "Divya P", role: "Introduction to Tailoring", image: stand("course-intro") },
 ];

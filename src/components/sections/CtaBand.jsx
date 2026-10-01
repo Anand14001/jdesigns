@@ -11,13 +11,13 @@ export default function CtaBand({ className = "" }) {
   return (
     <section className={`py-[var(--section)] ${className}`}>
       <div className="wrap">
-        <Reveal className="relative flex flex-col items-start gap-[30px] overflow-hidden rounded-card bg-black px-6 py-8 text-white md:px-10 md:py-[42px] lg:flex-row lg:items-center lg:justify-between lg:pr-[220px]">
+        <Reveal className="relative flex flex-col items-start gap-[30px] overflow-hidden rounded-card bg-violet px-6 py-8 text-white md:px-10 md:py-[42px] lg:flex-row lg:items-center lg:justify-between lg:pr-[220px]">
           <div className="relative z-[1]">
             <h2 className="mb-1.5 text-2xl text-white md:text-[1.75rem]">{COURSES.cta.title}</h2>
             <p className="m-0 max-w-[45rem] text-white/75">{COURSES.cta.text}</p>
           </div>
           <div className="relative z-[1] flex w-full flex-wrap gap-3 lg:w-auto lg:flex-nowrap">
-            <Button onClick={() => openEnquiry("Not sure – need guidance")} className="max-md:flex-[1_1_100%]">
+            <Button variant="white" onClick={() => openEnquiry("Not sure – need guidance")} className="max-md:flex-[1_1_100%]">
               {COURSES.cta.button}
             </Button>
             <Button variant="outlineLight" onClick={() => openBrochure()} className="max-md:flex-[1_1_100%]">

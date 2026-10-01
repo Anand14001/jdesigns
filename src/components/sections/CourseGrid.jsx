@@ -20,7 +20,7 @@ export default function CourseGrid() {
               <Card className="w-full">
                 <CardMedia image={COURSE_IMAGES[c.slug]} alt="">
                   {c.badge && (
-                    <span className="absolute top-[18px] left-[18px] rounded-btn bg-red px-3 py-[5px] text-xs font-extrabold text-white">{c.badge}</span>
+                    <span className="absolute top-[18px] left-[18px] rounded-btn bg-violet px-3 py-[5px] text-xs font-extrabold text-white">{c.badge}</span>
                   )}
                 </CardMedia>
                 <CardBody>
@@ -30,7 +30,7 @@ export default function CourseGrid() {
                   <ul className="m-0 mb-7 grid list-none gap-2 p-0">
                     {c.points.map((p) => (
                       <li key={p} className="flex gap-2.5 text-sm text-white/78">
-                        <Check className="mt-0.5 size-4 shrink-0 text-red" /> {p}
+                        <Check className="mt-0.5 size-4 shrink-0 text-violet" /> {p}
                       </li>
                     ))}
                   </ul>

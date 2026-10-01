@@ -4,7 +4,7 @@ import { AUDIENCE_ICONS } from "../icons/Icons";
 import Reveal from "../ui/Reveal";
 import SectionTitle from "../ui/SectionTitle";
 
-/** "Who Can Join" — black icon cards. On phones they swipe sideways with dots. */
+/** "Who Can Join" — plum icon cards. On phones they swipe sideways with dots. */
 export default function Audience() {
   const rowRef = useRef(null);
   const [activeDot, setActiveDot] = useState(0);
@@ -31,7 +31,7 @@ export default function Audience() {
           {AUDIENCE.items.map((item) => (
             <Reveal
               key={item.title}
-              className="flex snap-center flex-col items-center rounded-card bg-black px-[26px] pt-[34px] pb-8 text-center text-white"
+              className="flex snap-center flex-col items-center rounded-card bg-plum px-[26px] pt-[34px] pb-8 text-center text-white"
             >
               <svg viewBox="0 0 48 48" className="mb-[22px] size-[52px] text-white" aria-hidden="true">
                 {AUDIENCE_ICONS[item.icon]}

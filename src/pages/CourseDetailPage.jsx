@@ -42,8 +42,8 @@ export default function CourseDetailPage() {
               <SectionTitle bold="What You'll" light="Learn" />
               <ul className="m-0 mt-6 grid list-none gap-4 p-0 md:grid-cols-3">
                 {course.points.map((p) => (
-                  <Reveal as="li" key={p} className="rounded-card bg-black p-6 text-white">
-                    <Check className="mb-4 size-7 text-red" />
+                  <Reveal as="li" key={p} className="rounded-card bg-plum p-6 text-white">
+                    <Check className="mb-4 size-7 text-violet-tint" />
                     <span className="text-lg leading-snug font-medium">{p}</span>
                   </Reveal>
                 ))}
@@ -52,10 +52,10 @@ export default function CourseDetailPage() {
 
             <div>
               <SectionTitle bold={APPROACH.title[0]} light={APPROACH.title[1]} sub={APPROACH.sub} />
-              <ol className="m-0 mt-6 list-none border-t border-black p-0">
+              <ol className="m-0 mt-6 list-none border-t border-ink p-0">
                 {APPROACH.steps.map((s) => (
                   <Reveal as="li" key={s.num} className="grid grid-cols-[56px_1fr] gap-4 border-b border-line py-5 md:grid-cols-[80px_220px_1fr]">
-                    <span className="text-2xl font-extrabold text-red">{s.num}</span>
+                    <span className="text-2xl font-extrabold text-violet">{s.num}</span>
                     <strong className="text-lg font-medium text-ink">{s.title}</strong>
                     <span className="text-muted max-md:col-start-2">{s.text}</span>
                   </Reveal>
@@ -68,7 +68,7 @@ export default function CourseDetailPage() {
               <ul className="m-0 mt-6 grid list-none gap-4 p-0 sm:grid-cols-2">
                 {AUDIENCE.items.map((a) => (
                   <Reveal as="li" key={a.title} className="flex gap-4 rounded-card bg-band p-6">
-                    <svg viewBox="0 0 48 48" className="size-10 shrink-0 text-black" aria-hidden="true">{AUDIENCE_ICONS[a.icon]}</svg>
+                    <svg viewBox="0 0 48 48" className="size-10 shrink-0 text-ink" aria-hidden="true">{AUDIENCE_ICONS[a.icon]}</svg>
                     <span>
                       <strong className="mb-1 block text-lg font-medium text-ink">{a.title}</strong>
                       <span className="text-[0.9375rem] text-muted">{a.text}</span>

@@ -1,10 +1,10 @@
 import { Link } from "react-router";
 
 const VARIANTS = {
-  red: "bg-red border-red text-white hover:bg-red-dark hover:border-red-dark",
-  outlineLight: "border-white/80 text-white hover:bg-white hover:text-black",
-  outlineDark: "border-black text-black hover:bg-black hover:text-white",
-  white: "bg-white border-white text-black hover:bg-red hover:border-red hover:text-white",
+  violet: "bg-violet border-violet text-white hover:bg-violet-deep hover:border-violet-deep",
+  outlineLight: "border-white/80 text-white hover:bg-white hover:text-shell",
+  outlineDark: "border-ink text-ink hover:bg-ink hover:text-white",
+  white: "bg-white border-white text-ink hover:bg-violet-deep hover:border-violet-deep hover:text-white",
 };
 
 const SIZES = {
@@ -19,10 +19,10 @@ const SIZES = {
  *  - `href="tel:..."`  normal link (http links open in a new tab)
  *  - neither           <button> (pass onClick, or type="submit")
  */
-export default function Button({ to, href, variant = "red", size = "md", className = "", children, ...rest }) {
+export default function Button({ to, href, variant = "violet", size = "md", className = "", children, ...rest }) {
   const hasDisplay = /(?:^|\s)(?:hidden|block|inline-block|flex|inline-flex|grid)(?:!|\b)/.test(className);
   const baseDisplay = hasDisplay ? "" : "inline-flex ";
-  const classes = `${baseDisplay}cursor-pointer items-center justify-center gap-2 border font-extrabold whitespace-nowrap transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-red disabled:cursor-wait disabled:opacity-60 ${SIZES[size]} ${VARIANTS[variant]} ${className}`;
+  const classes = `${baseDisplay}cursor-pointer items-center justify-center gap-2 border font-extrabold whitespace-nowrap transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-violet disabled:cursor-wait disabled:opacity-60 ${SIZES[size]} ${VARIANTS[variant]} ${className}`;
 
   if (to) return <Link to={to} className={classes} {...rest}>{children}</Link>;
   if (href) {

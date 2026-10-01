@@ -12,7 +12,7 @@ export function CourseCard({ course }) {
     <Card>
       <CardMedia image={COURSE_IMAGES[course.slug]} alt="">
         {course.badge && (
-          <span className="absolute top-[18px] left-[18px] rounded-btn bg-red px-3 py-[5px] text-xs font-extrabold text-white">{course.badge}</span>
+          <span className="absolute top-[18px] left-[18px] rounded-btn bg-violet px-3 py-[5px] text-xs font-extrabold text-white">{course.badge}</span>
         )}
       </CardMedia>
       <CardBody>

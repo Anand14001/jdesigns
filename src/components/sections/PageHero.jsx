@@ -15,7 +15,7 @@ export default function PageHero({ image, crumbs = [], current, title, sub, tag 
           <div data-parallax className="absolute -inset-y-[12%] inset-x-0">
             <Img src={image} eager />
           </div>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,.9)_0%,rgba(0,0,0,.7)_50%,rgba(0,0,0,.35)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,.74)_0%,rgba(0,0,0,.48)_50%,rgba(0,0,0,.15)_100%)]" />
         </div>
       )}
       <div className="wrap relative flex min-h-[300px] flex-col justify-end pt-10 pb-12 md:min-h-[380px] md:pb-16">
@@ -34,13 +34,13 @@ export default function PageHero({ image, crumbs = [], current, title, sub, tag 
             </li>
           </ol>
         </nav>
-        {tag && <span data-reveal="up" className="mb-3 inline-block w-fit rounded-btn bg-red px-3 py-[5px] text-xs font-extrabold text-white">{tag}</span>}
+        {tag && <span data-reveal="up" className="mb-3 inline-block w-fit rounded-btn bg-gold px-3 py-[5px] text-xs font-extrabold text-shell">{tag}</span>}
         <h1 data-reveal="left" className="m-0 max-w-[50rem] text-[2.25rem] leading-[1.05] font-light tracking-[-0.015em] text-white md:text-[clamp(2.75rem,5vw,4.25rem)]">
           <b className="font-extrabold">{title[0]}</b> {title[1]}
         </h1>
         {sub && <p data-reveal="up" className="m-0 mt-4 max-w-[40rem] text-base text-white/80 md:text-xl">{sub}</p>}
       </div>
-      <div className="h-1.5 bg-red" aria-hidden="true" />
+      <div className="h-1.5 bg-gold" aria-hidden="true" />
     </section>
   );
 }

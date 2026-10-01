@@ -38,7 +38,7 @@ export default function Achievements() {
                 tabIndex={tab === i ? 0 : -1}
                 onClick={() => setTab(i)}
                 className={`cursor-pointer rounded-full border px-5 py-2 text-sm font-medium transition-colors ${
-                  tab === i ? "border-black bg-black text-white" : "border-[#b5b5b5] bg-transparent text-black hover:border-black"
+                  tab === i ? "border-plum bg-plum text-white" : "border-ink/30 bg-transparent text-ink hover:border-ink"
                 }`}
               >
                 {g.label}

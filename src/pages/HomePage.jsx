@@ -9,7 +9,7 @@ import Instagram from "../components/sections/Instagram";
 import QuickBar from "../components/sections/QuickBar";
 import Stats from "../components/sections/Stats";
 import StudentWork from "../components/sections/StudentWork";
-import VideoGallery from "../components/sections/VideoGallery";
+import Testimonials from "../components/sections/Testimonials";
 import Notch from "../components/ui/Notch";
 
 export default function HomePage() {
@@ -27,7 +27,7 @@ export default function HomePage() {
       <Founder teaser />
       <CtaBand className="pt-0" />
       <Instagram />
-      <VideoGallery />
+      <Testimonials />
     </>
   );
 }

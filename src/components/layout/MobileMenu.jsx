@@ -45,7 +45,7 @@ export default function MobileMenu({ open, onClose }) {
       <div
         aria-hidden="true"
         onClick={onClose}
-        className={`absolute inset-0 bg-black/60 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`}
+        className={`absolute inset-0 bg-shell/70 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`}
       />
       <div
         id="mobile-menu"
@@ -55,7 +55,7 @@ export default function MobileMenu({ open, onClose }) {
         aria-label="Menu"
         inert={!open}
         data-lenis-prevent
-        className={`absolute inset-y-0 right-0 flex w-full max-w-[420px] flex-col overflow-y-auto overscroll-contain bg-black text-white transition-transform duration-[400ms] ease-soft ${
+        className={`absolute inset-y-0 right-0 flex w-full max-w-[420px] flex-col overflow-y-auto overscroll-contain bg-shell text-white transition-transform duration-[400ms] ease-soft ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -80,11 +80,11 @@ export default function MobileMenu({ open, onClose }) {
                       className="flex w-full cursor-pointer items-center justify-between border-0 bg-transparent px-0 py-[18px] text-left text-xl font-medium text-white"
                     >
                       {item.label}
-                      {expanded === item.label ? <Minus className="size-5 text-red" /> : <Plus className="size-5" />}
+                      {expanded === item.label ? <Minus className="size-5 text-violet-tint" /> : <Plus className="size-5" />}
                     </button>
                     <ul id={`sub-${item.mega}`} hidden={expanded !== item.label} className="m-0 list-none p-0 pb-4">
                       <li>
-                        <NavLink to={item.to} end className="block py-2.5 pl-4 text-base text-white/80 hover:text-red">
+                        <NavLink to={item.to} end className="block py-2.5 pl-4 text-base text-white/80 hover:text-violet-tint">
                           {item.mega === "courses" ? "All Courses" : "About Us"}
                         </NavLink>
                       </li>
@@ -92,7 +92,7 @@ export default function MobileMenu({ open, onClose }) {
                         .filter((l) => l.to !== item.to)
                         .map((l) => (
                           <li key={l.to}>
-                            <NavLink to={l.to} className="block py-2.5 pl-4 text-base text-white/80 hover:text-red">
+                            <NavLink to={l.to} className="block py-2.5 pl-4 text-base text-white/80 hover:text-violet-tint">
                               {l.label}
                             </NavLink>
                           </li>
@@ -100,7 +100,7 @@ export default function MobileMenu({ open, onClose }) {
                     </ul>
                   </>
                 ) : (
-                  <NavLink to={item.to} className="block py-[18px] text-xl font-medium text-white hover:text-red">
+                  <NavLink to={item.to} className="block py-[18px] text-xl font-medium text-white hover:text-violet-tint">
                     {item.label}
                   </NavLink>
                 )}
@@ -123,7 +123,7 @@ export default function MobileMenu({ open, onClose }) {
           <a href={CONTACT.whatsappHref} target="_blank" rel="noopener" className="flex items-center gap-3 text-white">
             <WhatsAppIcon className="size-5" /> WhatsApp Us
           </a>
-          <span className="flex items-center gap-3 text-red">
+          <span className="flex items-center gap-3 text-violet-tint">
             <MapPin className="size-5" /> {CONTACT.location}
           </span>
         </div>

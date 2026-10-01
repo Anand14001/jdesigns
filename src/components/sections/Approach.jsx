@@ -17,12 +17,12 @@ export default function Approach() {
         {APPROACH.steps.map((step) => (
           <Card key={step.num}>
             <CardMedia ratio="square" className="grid place-items-center">
-              <span className="text-[clamp(6rem,12vw,10rem)] leading-none font-extrabold tracking-[-0.04em] text-black" aria-hidden="true">
+              <span className="text-[clamp(6rem,12vw,10rem)] leading-none font-extrabold tracking-[-0.04em] text-ink" aria-hidden="true">
                 {step.num}
               </span>
             </CardMedia>
             <CardBody>
-              <span className="mb-2 text-sm font-extrabold text-red">{step.num}</span>
+              <span className="mb-2 text-sm font-extrabold text-violet">{step.num}</span>
               <h3 className="mb-2 text-2xl font-medium text-white">{step.title}</h3>
               <p className="m-0 text-[0.9375rem] text-white/85">{step.text}</p>
             </CardBody>

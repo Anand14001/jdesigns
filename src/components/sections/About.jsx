@@ -24,11 +24,11 @@ export default function About({ showTitle = true }) {
               technique, we help each student turn her creativity into practical skills, an independent income and
               her own business.
             </p>
-            <ul className="mt-7 list-none border-t border-black p-0">
+            <ul className="mt-7 list-none border-t border-ink p-0">
               {ABOUT.checklist.map((item) => (
                 <li
                   key={item}
-                  className="relative border-b border-line py-3.5 pl-[30px] before:absolute before:top-1/2 before:left-0 before:h-0.5 before:w-4 before:bg-red before:content-['']"
+                  className="relative border-b border-line py-3.5 pl-[30px] before:absolute before:top-1/2 before:left-0 before:h-0.5 before:w-4 before:bg-violet before:content-['']"
                 >
                   {item}
                 </li>

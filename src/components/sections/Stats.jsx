@@ -6,11 +6,11 @@ export default function Stats() {
   return (
     <section className="pb-2.5">
       <div className="wrap">
-        <div className="grid grid-cols-1 border-b-[6px] border-black pb-2.5 md:grid-cols-4 md:pb-[46px]">
+        <div className="grid grid-cols-1 border-b-[6px] border-ink pb-2.5 md:grid-cols-4 md:pb-[46px]">
           {STATS.map(({ count, suffix, text, label }) => (
             <Reveal
               key={label}
-              className="flex flex-row items-center justify-start gap-6 border-b border-black py-[26px] last:border-b-0
+              className="flex flex-row items-center justify-start gap-6 border-b border-ink py-[26px] last:border-b-0
                 md:min-h-[116px] md:flex-col md:items-start md:justify-center md:gap-0 md:border-b-0 md:border-l md:px-[30px] md:py-0
                 md:first:border-l-0 md:first:pl-0 xl:px-[60px]"
             >

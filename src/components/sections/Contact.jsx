@@ -5,6 +5,7 @@ import { DottedTriangle } from "../icons/Illustrations";
 import EnquiryForm from "../forms/EnquiryForm";
 import Reveal from "../ui/Reveal";
 import SectionTitle from "../ui/SectionTitle";
+import SocialLinks, { activeSocials } from "../ui/SocialLinks";
 
 const DETAILS = [
   { Icon: Phone, label: "Phone / WhatsApp", value: CONTACT.phoneDisplay, href: CONTACT.phoneHref },
@@ -15,7 +16,7 @@ const DETAILS = [
 /** Black contact section with details, map and the enquiry form. */
 export default function Contact({ showTitle = true }) {
   return (
-    <section id="contact" className="relative bg-black pt-[var(--section)] pb-[130px] text-white lg:pb-[190px]">
+    <section id="contact" className="relative bg-shell pt-[var(--section)] pb-[130px] text-white lg:pb-[190px]">
       <div className="wrap relative">
         {showTitle && (
           <SectionTitle dark bold={CONTACT_SECTION.title[0]} light={CONTACT_SECTION.title[1]} sub={CONTACT_SECTION.sub} className="mb-10" />
@@ -34,7 +35,7 @@ export default function Contact({ showTitle = true }) {
                   <div>
                     <small className="block text-[0.8125rem] text-white/60">{label}</small>
                     {href ? (
-                      <a href={href} className="text-lg font-medium text-white hover:text-red">{value}</a>
+                      <a href={href} className="text-lg font-medium text-white hover:text-violet-tint">{value}</a>
                     ) : (
                       <span className="text-lg font-medium text-white">{value}</span>
                     )}
@@ -43,7 +44,14 @@ export default function Contact({ showTitle = true }) {
               ))}
             </ul>
 
-            <div className="h-[260px] overflow-hidden rounded-card bg-[#2a2a2a]">
+            {activeSocials().length > 0 && (
+              <div className="mb-8">
+                <small className="mb-3 block text-[0.8125rem] text-white/60">Follow us</small>
+                <SocialLinks size="lg" label="Follow J Designs on social media" />
+              </div>
+            )}
+
+            <div className="h-[260px] overflow-hidden rounded-card bg-white/10">
               <iframe
                 title="Map showing Poonamallee, Chennai"
                 src="https://maps.google.com/maps?q=Poonamallee,%20Chennai,%20Tamil%20Nadu&t=&z=13&ie=UTF8&iwloc=&output=embed"

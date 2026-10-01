@@ -11,7 +11,7 @@ const link =
 export default function QuickBar() {
   const { openEnquiry } = useSite();
   return (
-    <div className="wrap grid grid-cols-[1fr_1fr_auto] items-center gap-2.5 bg-black py-2.5 text-white lg:hidden">
+    <div className="wrap grid grid-cols-[1fr_1fr_auto] items-center gap-2.5 bg-shell py-2.5 text-white lg:hidden">
       <a href={CONTACT.phoneHref} className={link}>
         <Phone className="size-5" />
         <span>Call Now</span>

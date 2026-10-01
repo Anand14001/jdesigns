@@ -14,7 +14,7 @@ export function useArrows() {
 
 /** Pearl's red-circle previous / next arrows. */
 export default function SliderArrows({ arrows, dark = false, className = "" }) {
-  const color = dark ? "text-white" : "text-black";
+  const color = dark ? "text-white" : "text-ink";
   return (
     <div className={`flex shrink-0 gap-5 ${className}`}>
       <button ref={arrows.prev} type="button" aria-label="Previous" className={`${btn} ${color}`}>

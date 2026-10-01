@@ -21,6 +21,8 @@ export const LEGACY_ANCHORS = {
 
 export const HERO = {
   eyebrow: "Since 2011 · Poonamallee, Chennai",
+  // No longer shown: the first banner is now the heading and the two buttons
+  // alone. Kept here in case the sentence is wanted back one day.
   lead:
     "Practical tailoring, garment construction and Aari embroidery training for women. You learn by stitching real garments, with personal guidance at every step from Mrs. Sasikala J.",
   facts: [
@@ -61,6 +63,30 @@ export const ABOUT = {
     "Small batches with individual guidance",
     "Training plus professional tailoring services under one roof",
     "Mentorship for starting your own tailoring business",
+  ],
+};
+
+/** "Why Choose J Designs?" — the four reasons, each with a short line of its own. */
+export const ADVANTAGE = {
+  title: ["Why Choose", "J Designs?"],
+  sub: "More than just learning to stitch, we help you build confidence, creativity, and skills for a future in fashion.",
+  items: [
+    {
+      title: "Expert Guidance",
+      text: "Learn from experienced trainers with personalized guidance and practical instruction.",
+    },
+    {
+      title: "Hands-On Learning",
+      text: "Build real-world tailoring and fashion skills through practical training and creative projects.",
+    },
+    {
+      title: "Beginner-Friendly Courses",
+      text: "Start from the basics and develop your skills step by step, even with no prior experience.",
+    },
+    {
+      title: "Empowering Opportunities",
+      text: "Turn your passion for fashion into professional skills, independent work, and entrepreneurial opportunities.",
+    },
   ],
 };
 

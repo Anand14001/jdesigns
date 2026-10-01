@@ -28,7 +28,7 @@ export default function AnnouncementBar() {
   };
 
   return (
-    <div className="relative bg-red text-white">
+    <div className="relative bg-violet text-white">
       <p className="m-0 px-11 py-2 text-center text-[0.8125rem] font-medium md:px-[60px] md:py-[7px] md:text-[0.9375rem]">
         {NOTICE}{" "}
         <button type="button" onClick={() => openEnquiry()} className="cursor-pointer border-0 bg-transparent p-0 font-extrabold text-white underline underline-offset-2">

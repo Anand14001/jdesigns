@@ -9,7 +9,7 @@ export default function MissionVision() {
           <Reveal key={item.label} className="rounded-2xl bg-white px-6 py-[30px] shadow-[0_6px_24px_rgba(0,0,0,.06)] md:p-11">
             <h2
               className={`mb-[22px] inline-block rounded-btn border px-5 py-1.5 text-xs font-medium ${
-                item.dark ? "border-black bg-black text-white" : "border-[#b5b5b5] text-black"
+                item.dark ? "border-plum bg-plum text-white" : "border-ink/30 text-ink"
               }`}
             >
               {item.label}

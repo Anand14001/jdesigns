@@ -1,13 +1,13 @@
-import { HeartHandshake, Scissors, Store, Users } from "lucide-react";
-import { ABOUT } from "../../data/content";
+import { GraduationCap, Scissors, Store, Users } from "lucide-react";
+import { ADVANTAGE } from "../../data/content";
 import { ADVANTAGE_IMAGES } from "../../data/media";
 import Img from "../ui/Img";
 import Reveal from "../ui/Reveal";
 import SectionTitle from "../ui/SectionTitle";
 
-const ICONS = [Scissors, Users, Store, HeartHandshake];
+const ICONS = [Users, Scissors, GraduationCap, Store];
 
-/** "The J Designs Advantage" (Pearl Advantage): photo collage + the four reasons to join. */
+/** "Why Choose J Designs?": photo collage + the four reasons to join. */
 export default function Advantage() {
   return (
     <section className="py-[var(--section)]">
@@ -22,20 +22,23 @@ export default function Advantage() {
         </div>
 
         <div>
-          <SectionTitle bold="The J Designs" light="Advantage" sub={ABOUT.sub} />
-          <ul className="m-0 mt-8 grid list-none grid-cols-1 border-t border-black p-0 sm:grid-cols-2">
-            {ABOUT.checklist.map((item, i) => {
+          <SectionTitle bold={ADVANTAGE.title[0]} light={ADVANTAGE.title[1]} sub={ADVANTAGE.sub} />
+          <ul className="m-0 mt-8 grid list-none grid-cols-1 border-t border-ink p-0 sm:grid-cols-2">
+            {ADVANTAGE.items.map((item, i) => {
               const Icon = ICONS[i % ICONS.length];
               return (
                 <Reveal
                   as="li"
-                  key={item}
+                  key={item.title}
                   className="flex items-start gap-4 border-b border-line py-6 sm:odd:border-r sm:odd:pr-6 sm:even:pl-6"
                 >
-                  <span className="grid size-12 shrink-0 place-items-center rounded-full border border-red text-red">
+                  <span className="grid size-12 shrink-0 place-items-center rounded-full border border-violet text-violet">
                     <Icon className="size-5" strokeWidth={1.6} />
                   </span>
-                  <span className="pt-2.5 text-[1.0625rem] leading-snug font-medium text-ink">{item}</span>
+                  <div>
+                    <p className="m-0 text-[1.0625rem] leading-snug font-bold text-ink">{item.title}</p>
+                    <p className="m-0 mt-1.5 text-[0.9375rem] leading-relaxed text-muted">{item.text}</p>
+                  </div>
                 </Reveal>
               );
             })}

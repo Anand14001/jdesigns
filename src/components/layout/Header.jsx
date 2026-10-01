@@ -102,7 +102,7 @@ export default function Header() {
         data-site-header
         onFocus={() => setHidden(false)}
         onBlur={onBlur}
-        className={`fixed inset-x-0 top-0 z-50 bg-black text-white transition-transform duration-500 ease-soft ${
+        className={`fixed inset-x-0 top-0 z-50 bg-shell text-white transition-transform duration-500 ease-soft ${
           hidden && !pinned ? "-translate-y-full" : "translate-y-0"
         }`}
       >
@@ -111,17 +111,17 @@ export default function Header() {
         {/* Utility bar (desktop) */}
         <div className="hidden border-b border-white/10 lg:block">
           <div className="wrap flex h-[34px] items-center justify-between gap-[30px] text-sm font-medium">
-            <span className="flex items-center gap-2 text-red">
+            <span className="flex items-center gap-2 text-violet-tint">
               <MapPin className="size-4" /> {CONTACT.location}
             </span>
             <div className="flex items-center gap-[30px]">
-              <button type="button" onClick={() => openBrochure()} className="flex cursor-pointer items-center gap-2 border-0 bg-transparent p-0 text-sm font-medium text-white hover:text-red">
+              <button type="button" onClick={() => openBrochure()} className="flex cursor-pointer items-center gap-2 border-0 bg-transparent p-0 text-sm font-medium text-white hover:text-violet-tint">
                 <Download className="size-4" /> Download Brochure
               </button>
-              <a href={CONTACT.whatsappHref} target="_blank" rel="noopener" className="flex items-center gap-2 hover:text-red">
+              <a href={CONTACT.whatsappHref} target="_blank" rel="noopener" className="flex items-center gap-2 hover:text-violet-tint">
                 <WhatsAppIcon className="size-4" /> WhatsApp
               </a>
-              <a href={CONTACT.phoneHref} className="flex items-center gap-2 hover:text-red">
+              <a href={CONTACT.phoneHref} className="flex items-center gap-2 hover:text-violet-tint">
                 <Phone className="size-4" /> {CONTACT.phoneDisplay}
               </a>
             </div>
@@ -139,8 +139,8 @@ export default function Header() {
                   <li key={item.label} className="flex h-full items-center" onMouseEnter={() => openMega(item.mega)} onMouseLeave={scheduleClose}>
                     <NavLink
                       to={item.to}
-                      className={`flex h-full items-center px-2 text-base font-medium transition-colors hover:text-red xl:text-lg ${
-                        isActive(item, pathname) || mega === item.mega ? "text-red" : "text-white"
+                      className={`flex h-full items-center px-2 text-base font-medium transition-colors hover:text-violet-tint xl:text-lg ${
+                        isActive(item, pathname) || mega === item.mega ? "text-violet-tint" : "text-white"
                       }`}
                     >
                       {item.label}
@@ -152,7 +152,7 @@ export default function Header() {
                       aria-controls={`mega-${item.mega}`}
                       aria-label={`${item.label} menu`}
                       onClick={() => setMega((m) => (m === item.mega ? null : item.mega))}
-                      className="-ml-1 grid size-7 cursor-pointer place-items-center border-0 bg-transparent p-0 text-white hover:text-red"
+                      className="-ml-1 grid size-7 cursor-pointer place-items-center border-0 bg-transparent p-0 text-white hover:text-violet-tint"
                     >
                       <ChevronDown className={`size-4 transition-transform duration-300 ${mega === item.mega ? "rotate-180" : ""}`} />
                     </button>
@@ -161,8 +161,8 @@ export default function Header() {
                   <li key={item.label} className="flex h-full items-center">
                     <NavLink
                       to={item.to}
-                      className={`flex h-full items-center px-2 text-base font-medium transition-colors hover:text-red xl:text-lg ${
-                        isActive(item, pathname) ? "text-red" : "text-white"
+                      className={`flex h-full items-center px-2 text-base font-medium transition-colors hover:text-violet-tint xl:text-lg ${
+                        isActive(item, pathname) ? "text-violet-tint" : "text-white"
                       }`}
                     >
                       {item.label}
@@ -200,7 +200,7 @@ export default function Header() {
       <div
         aria-hidden="true"
         onClick={() => setMega(null)}
-        className={`fixed inset-0 z-40 hidden bg-black/50 transition-opacity duration-300 lg:block ${mega ? "opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-40 hidden bg-shell/60 transition-opacity duration-300 lg:block ${mega ? "opacity-100" : "pointer-events-none opacity-0"}`}
       />
 
       <MobileMenu open={drawer} onClose={closeDrawer} />

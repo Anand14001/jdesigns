@@ -4,15 +4,30 @@
    Design tokens (from the original css/style.css)
    --------------------------------------------------------- */
 @theme {
-  --color-red: #662D91;
-  --color-red-dark: #522673;
-  --color-ink: #212529;
-  --color-line: #e0e0e0;
-  --color-muted: #707070;
-  --color-band: #f4f4f2;
+  /* Brand violet, plus the light tint that stands in for it on dark
+     surfaces: #662D91 is only 2.4:1 against near-black, so it cannot
+     carry an accent there. */
+  --color-violet: #662D91;
+  --color-violet-deep: #522673;
+  --color-violet-tint: #C9A6E8;
+  /* Zari gold, violet's split-complement. Rules, icons and badges on dark
+     only -- it is 2.25:1 on paper, so never as text on a light surface. */
+  --color-gold: #D8A531;
+
+  /* Light surfaces */
+  --color-paper: #FAF8F5;
+  --color-band: #F1EDE8;
+  --color-mist: #EFE9F2;
+
+  /* Deep surfaces, all mixed from the violet rather than from black */
+  --color-shell: #17131F;
+  --color-plum: #3B1E52;
+  --color-hero: #0E0B13;
+
+  --color-ink: #1F1A24;
+  --color-muted: #6B6170;
+  --color-line: #E3DCD9;
   --color-media: #a9a9a9;
-  --color-navy: #2e2b3f;
-  --color-hero: #070707;
 
   --font-sans: "Figtree", "Avenir Next", Avenir, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
@@ -60,7 +75,7 @@
   /* Smooth scrolling comes from Lenis; the native setting would fight it. */
   html { scroll-padding-top: calc(var(--header-h) + 10px); }
   body {
-    @apply bg-white font-sans font-light text-ink antialiased;
+    @apply bg-paper font-sans font-light text-ink antialiased;
     padding-top: var(--header-h);
     line-height: 1.5;
     overflow-x: hidden;
@@ -95,6 +110,45 @@
 .hero-bg img { transform: scale(1.12); transition: transform 7s linear; }
 .hero .swiper-slide-active .hero-bg img { transform: scale(1); }
 
+/* Focal point. A hero photo with a person in it is cropped hard on narrow
+   screens, so each slide can say which part of the frame must survive the crop
+   -- set per breakpoint, because how much is cut away changes with the shape of
+   the window. Slides that set nothing stay centred. */
+.hero-bg img { object-position: var(--hero-focus, 50% 50%); }
+@media (min-width: 48rem) {
+  .hero-bg img { object-position: var(--hero-focus-md, var(--hero-focus, 50% 50%)); }
+}
+@media (min-width: 75rem) {
+  .hero-bg img { object-position: var(--hero-focus-xl, var(--hero-focus-md, var(--hero-focus, 50% 50%))); }
+}
+
+/* Veil for a slide whose photo has a person in it.
+   The photo is 2.5:1, so `cover` always scales it by height and never crops it
+   vertically -- her chin stays pinned at 44% of the frame however tall the
+   window is. On a narrow screen the words cannot clear that and still fit, so
+   below 1200px the slide is split instead: the photo takes a band of its own at
+   the top and the words sit beneath it on the brand dark. There the veil is
+   only a soft landing into that dark. From 1200px the frame is wide enough to
+   hold both at once: the photo goes full-bleed, the words take the left column,
+   and the shade runs off to nothing well before she begins.
+   Mixed from --color-hero, not black, so the dark keeps the brand tint. */
+.hero-veil-subject {
+  background: linear-gradient(180deg,
+    rgb(14 11 19 / 0) 55%,
+    rgb(14 11 19 / .45) 80%,
+    rgb(14 11 19 / .96) 100%);
+}
+@media (min-width: 75rem) {
+  .hero-veil-subject {
+    background: linear-gradient(90deg,
+      rgb(14 11 19 / .86) 0%,
+      rgb(14 11 19 / .72) 38%,
+      rgb(14 11 19 / .34) 62%,
+      rgb(14 11 19 / .06) 82%,
+      rgb(14 11 19 / 0) 100%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-bg img { transform: none; transition: none; }
   .modal-backdrop, .modal-panel { animation: none; }
@@ -102,19 +156,19 @@
 }
 
 /* ---------------------------------------------------------
-   Notch divider: line + navy triangle + thin diagonal
+   Notch divider: line + plum triangle + thin diagonal
    --------------------------------------------------------- */
-.notch { position: relative; height: 50px; border-top: 3px solid var(--color-navy); }
+.notch { position: relative; height: 50px; border-top: 3px solid var(--color-plum); }
 .notch::before {
   content: ""; position: absolute; right: 0; top: -1px;
   width: 100px; height: 50px;
-  background: var(--color-navy);
+  background: var(--color-plum);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 .notch::after {
   content: ""; position: absolute; right: 95px; top: 0;
   width: 1px; height: 90px;
-  background: var(--color-navy);
+  background: var(--color-plum);
   transform-origin: top; transform: rotate(-42deg);
 }
 @media (min-width: 48rem) {

@@ -8,7 +8,7 @@ import Button from "../ui/Button";
 import Img from "../ui/Img";
 
 const linkCls =
-  "group flex items-center justify-between gap-4 border-b border-white/15 py-3.5 text-lg font-medium text-white transition-colors hover:text-red focus-visible:text-red";
+  "group flex items-center justify-between gap-4 border-b border-white/15 py-3.5 text-lg font-medium text-white transition-colors hover:text-violet-tint focus-visible:text-violet-tint";
 
 /** Courses panel: course list on the left, a live preview of the hovered course on the right. */
 function CoursesPanel() {
@@ -20,7 +20,7 @@ function CoursesPanel() {
   return (
     <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.7fr)] gap-[60px]">
       <div>
-        <p className="mb-2 text-sm font-medium text-red">Our Courses</p>
+        <p className="mb-2 text-sm font-medium text-violet-tint">Our Courses</p>
         <ul className="m-0 list-none p-0">
           {COURSES.items.map((c, i) => (
             <li key={c.slug}>
@@ -28,7 +28,7 @@ function CoursesPanel() {
                 to={`/courses/${c.slug}/`}
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
-                className={`${linkCls} ${i === active ? "text-red!" : ""}`}
+                className={`${linkCls} ${i === active ? "text-violet-tint!" : ""}`}
               >
                 {c.title}
                 <ArrowRight className="size-5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100" />
@@ -37,8 +37,8 @@ function CoursesPanel() {
           ))}
         </ul>
         <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium">
-          <Link to="/courses/" className="text-white underline underline-offset-4 hover:text-red">View all courses</Link>
-          <Link to={extra.to} className="text-white underline underline-offset-4 hover:text-red">{extra.label}</Link>
+          <Link to="/courses/" className="text-white underline underline-offset-4 hover:text-violet-tint">View all courses</Link>
+          <Link to={extra.to} className="text-white underline underline-offset-4 hover:text-violet-tint">{extra.label}</Link>
         </div>
       </div>
 
@@ -46,7 +46,7 @@ function CoursesPanel() {
         <div className="relative min-h-[300px]">
           <Img key={course.slug} src={COURSE_IMAGES[course.slug]} alt="" className="absolute inset-0 animate-[fade_.4s_ease]" />
           {course.badge && (
-            <span className="absolute top-4 left-4 rounded-btn bg-red px-3 py-[5px] text-xs font-extrabold text-white">{course.badge}</span>
+            <span className="absolute top-4 left-4 rounded-btn bg-gold px-3 py-[5px] text-xs font-extrabold text-shell">{course.badge}</span>
           )}
         </div>
         <div className="flex flex-col p-8">
@@ -56,7 +56,7 @@ function CoursesPanel() {
           <ul className="m-0 mb-6 grid list-none gap-2 p-0">
             {course.points.map((p) => (
               <li key={p} className="flex gap-2.5 text-sm text-white/75">
-                <Check className="mt-0.5 size-4 shrink-0 text-red" /> {p}
+                <Check className="mt-0.5 size-4 shrink-0 text-violet-tint" /> {p}
               </li>
             ))}
           </ul>
@@ -76,7 +76,7 @@ function AboutPanel() {
   return (
     <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.7fr)] gap-[60px]">
       <div>
-        <p className="mb-2 text-sm font-medium text-red">About Us</p>
+        <p className="mb-2 text-sm font-medium text-violet-tint">About Us</p>
         <ul className="m-0 list-none p-0">
           {links.map((l) => (
             <li key={l.to}>
@@ -119,7 +119,7 @@ export default function MegaMenu({ id, open, onMouseEnter, onMouseLeave }) {
       inert={!open}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className={`absolute inset-x-0 top-full border-t-[3px] border-red bg-black shadow-[0_30px_60px_rgba(0,0,0,.35)] transition-[opacity,transform,visibility] duration-300 ease-soft ${
+      className={`absolute inset-x-0 top-full border-t-[3px] border-gold bg-shell shadow-[0_30px_60px_rgba(0,0,0,.35)] transition-[opacity,transform,visibility] duration-300 ease-soft ${
         open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"
       }`}
     >

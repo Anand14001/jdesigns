@@ -47,7 +47,7 @@ export default function Modal({ open, onClose, label, className = "", dark = fal
 
   return createPortal(
     <div
-      className="modal-backdrop fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-3 md:p-6"
+      className="modal-backdrop fixed inset-0 z-[100] flex items-center justify-center bg-shell/80 p-3 md:p-6"
       onMouseDown={(e) => e.target === e.currentTarget && onClose()}
     >
       <div
@@ -57,14 +57,16 @@ export default function Modal({ open, onClose, label, className = "", dark = fal
         aria-label={label}
         tabIndex={-1}
         data-lenis-prevent
-        className={`modal-panel relative max-h-[calc(100dvh-1.5rem)] w-full overflow-y-auto overscroll-contain rounded-card outline-none ${dark ? "bg-black text-white" : "bg-white text-ink"} ${className}`}
+        className={`modal-panel relative max-h-[calc(100dvh-1.5rem)] w-full overflow-y-auto overscroll-contain rounded-card outline-none ${dark ? "bg-shell text-white" : "bg-white text-ink"} ${className}`}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className={`absolute top-3 right-3 z-10 grid size-10 cursor-pointer place-items-center rounded-full border-0 ${
-            dark ? "bg-white/10 text-white hover:bg-white/20" : "bg-band text-black hover:bg-line"
+          className={`absolute top-3 right-3 z-10 grid size-10 cursor-pointer place-items-center rounded-full transition-colors duration-300 ${
+            dark
+              ? "border border-gold/40 bg-shell/90 text-gold backdrop-blur-md hover:border-gold hover:bg-gold/20"
+              : "border-0 bg-band text-ink hover:bg-line"
           }`}
         >
           <X className="size-5" />

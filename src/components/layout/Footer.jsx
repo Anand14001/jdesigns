@@ -2,10 +2,9 @@ import { Download, Minus, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { FOOTER } from "../../data/content";
-import { SOCIAL } from "../../data/media";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { useSite } from "../../site/SiteContext";
-import { SOCIAL_ICONS, SOCIAL_LABELS } from "../icons/Icons";
+import SocialLinks, { activeSocials } from "../ui/SocialLinks";
 import Logo from "./Logo";
 
 function FooterLink({ link }) {
@@ -47,20 +46,11 @@ function FooterColumn({ title, links, open, collapsible, onToggle, children }) {
 }
 
 function FollowUs() {
-  const links = Object.entries(SOCIAL).filter(([, url]) => url);
-  if (!links.length) return null;
+  if (!activeSocials().length) return null;
   return (
     <div className="flex items-center gap-4">
       <span className="text-sm font-medium text-white">Follow Us</span>
-      {links.map(([name, url]) => {
-        const Icon = SOCIAL_ICONS[name];
-        return (
-          <a key={name} href={url} target="_blank" rel="noopener" aria-label={SOCIAL_LABELS[name]}
-            className="grid size-10 place-items-center rounded-full border border-white/40 text-white transition-colors hover:border-red hover:bg-red">
-            <Icon className="size-5" />
-          </a>
-        );
-      })}
+      <SocialLinks label="Follow J Designs on social media" />
     </div>
   );
 }
@@ -75,7 +65,7 @@ export default function Footer() {
   const toggle = (title) => setOpenCols((prev) => ({ ...prev, [title]: !prev[title] }));
 
   return (
-    <footer className="border-t-[3px] border-white bg-black pt-[30px] text-[0.9375rem] text-white/75 md:pt-[60px]">
+    <footer className="border-t-[3px] border-white bg-shell pt-[30px] text-[0.9375rem] text-white/75 md:pt-[60px]">
       <div className="wrap">
         <div className="grid grid-cols-1 pb-[30px] md:grid-cols-[repeat(3,auto)] md:justify-start md:gap-x-[60px] md:gap-y-10 md:pb-[50px] lg:gap-x-[100px] lg:pl-24">
           {FOOTER.columns.map((col) => (
