@@ -1,7 +1,7 @@
 import { Download } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { CONTACT, HERO } from "../../data/content";
-import { HERO_IMAGES } from "../../data/media";
+import { HERO_IMAGES, HERO_IMAGES_MOBILE } from "../../data/media";
 import { useReducedMotion } from "../../hooks/useMediaQuery";
 import { gsap } from "../../lib/motion";
 import { useSite } from "../../site/SiteContext";
@@ -83,9 +83,11 @@ const SLIDES = [
     // is composed as two halves: words on the left, her on the right, never
     // touching. `focus` is where the photo is anchored as it is cropped -- the
     // percentages move with the breakpoint because a narrow window cuts away far
-    // more of a wide photo than a broad one does.
+    // more of a wide photo than a broad one does. Below 768px it is a different,
+    // upright photo (see HERO_IMAGES_MOBILE), so `base` is a focal point for
+    // that one: her face a little above centre, the room cropped off the left.
     subject: true,
-    focus: { base: "92% 50%", md: "72% 4%", xl: "68% 45%" },
+    focus: { base: "62% 25%", md: "72% 4%", xl: "68% 45%" },
   },
   { label: "Your first stitch starts here", Content: SlideTwo },
   { label: "Our courses", Content: SlideThree },
@@ -117,7 +119,8 @@ export default function HeroCarousel() {
   );
 
   const goTo = (i) => swiperRef.current?.slideTo(i);
-  // Autoplay pauses while the mouse is over the hero or keyboard focus is inside it.
+  // Autoplay pauses while keyboard focus is inside the hero, so anyone tabbing
+  // through the buttons is not carried off mid-slide. Hovering does not pause it.
   const pause = () => swiperRef.current?.autoplay?.pause();
   const resume = (e) => {
     if (e.type === "blur" && e.currentTarget.contains(e.relatedTarget)) return;
@@ -140,7 +143,7 @@ export default function HeroCarousel() {
           fadeEffect: { crossFade: true },
           speed: 900,
           rewind: true,
-          autoplay: { delay: AUTOPLAY_MS, pauseOnMouseEnter: true, disableOnInteraction: false },
+          autoplay: { delay: AUTOPLAY_MS, disableOnInteraction: false },
         }}
       >
         {SLIDES.map(({ label, Content, subject, focus }, i) => (
@@ -155,13 +158,13 @@ export default function HeroCarousel() {
             <div
               className={
                 subject
-                  ? "hero-bg relative h-[clamp(190px,26svh,320px)] shrink-0 overflow-hidden xl:absolute xl:inset-0 xl:h-auto"
+                  ? "hero-bg absolute inset-0 overflow-hidden md:relative md:inset-auto md:h-[clamp(190px,26svh,320px)] md:shrink-0 xl:absolute xl:inset-0 xl:h-auto"
                   : "hero-bg absolute inset-0"
               }
               aria-hidden="true"
               style={focus ? { "--hero-focus": focus.base, "--hero-focus-md": focus.md, "--hero-focus-xl": focus.xl } : undefined}
             >
-              <Img src={HERO_IMAGES[i]} eager={i === 0} />
+              <Img src={HERO_IMAGES[i]} mobileSrc={HERO_IMAGES_MOBILE[i]} eager={i === 0} />
               <div
                 className={`absolute inset-0 ${
                   subject ? "hero-veil-subject" : "bg-[linear-gradient(90deg,rgba(0,0,0,.72)_0%,rgba(0,0,0,.45)_55%,rgba(0,0,0,.12)_100%)]"
@@ -172,7 +175,7 @@ export default function HeroCarousel() {
             <div
               className={`wrap relative w-full ${
                 subject
-                  ? "flex flex-1 flex-col justify-center pt-7 pb-[96px] xl:block xl:flex-none xl:pt-16 xl:pb-[120px]"
+                  ? "flex flex-1 flex-col justify-end pt-7 pb-[96px] md:justify-center xl:block xl:flex-none xl:pt-16 xl:pb-[120px]"
                   : "pt-12 pb-[120px] md:pt-16"
               }`}
             >

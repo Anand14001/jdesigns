@@ -15,6 +15,12 @@ const gallery = (n) => `images/stand-in/Gallery${n}.jpg`;
 /** Hero slider backgrounds, in slide order. */
 export const HERO_IMAGES = [stand("hero-silks"), stand("hero-threads"), stand("course-blouse")];
 
+/** Phone-shaped version of a hero photo, keyed by slide number (0 = the first).
+ *  A wide photo loses most of its frame to the crop on a narrow screen, so an
+ *  upright shot of the same scene is used there instead. A slide left out of
+ *  this list just uses its HERO_IMAGES photo at every width. */
+export const HERO_IMAGES_MOBILE = { 0: stand("hero-silks-mobile") };
+
 /** One photo per course (key = course slug in content.js). */
 export const COURSE_IMAGES = {
   "introduction-to-tailoring": stand("course-intro"),
@@ -84,10 +90,13 @@ export const INSTAGRAM = {
   ],
 };
 
-/** "Achievements" tabs. The words come from your existing content; only the photos are stand-ins. */
+/** "Achievements": one block per group, each with its own heading and the line
+ *  that sits under it. The words come from your existing content; only the
+ *  photos are stand-ins. */
 export const ACHIEVEMENTS = [
   {
-    label: "Institute",
+    title: "The Institution",
+    tagline: "What has been built in Poonamallee since 2011.",
     items: [
       { image: stand("hero-dressforms"), title: "Founded in 2011", text: "Mrs. Sasikala J founded J Designs in 2011 and has run it ever since." },
       { image: stand("machine"), title: "15+ Years of Teaching", text: "Around 15 years of training women in tailoring, garment construction and Aari embroidery." },
@@ -95,7 +104,8 @@ export const ACHIEVEMENTS = [
     ],
   },
   {
-    label: "Students",
+    title: "Our Students",
+    tagline: "What the women who train here have gone on to do with it.",
     items: [
       { image: stand("threads-row"), title: "200+ Women Trained", text: "Complete beginners, aspiring designers, homemakers and women who want to start a home-based business." },
       { image: stand("spools"), title: "Income From Home", text: "Many of her students have gone on to take tailoring orders and build income from home." },

@@ -1,4 +1,6 @@
+import { Controller } from "react-hook-form";
 import { CONTACT_SECTION } from "../../data/content";
+import Select from "../ui/Select";
 
 const input =
   "w-full rounded-btn border bg-white px-3.5 py-3 text-base text-ink transition-[border-color,box-shadow] duration-200 focus:border-violet focus:shadow-[0_0_0_3px_rgba(102,45,145,.2)] focus:outline-none";
@@ -15,8 +17,12 @@ export const phoneRules = {
   },
 };
 
-/** Label + input/select/textarea + its error message, wired up for React Hook Form. */
-export function Field({ id, label, optional, error, as = "input", options, registration, ...rest }) {
+/** Label + input/select/textarea + its error message, wired up for React Hook Form.
+ *
+ *  A select is the odd one out: it is our own listbox rather than a native
+ *  <select>, so it has no change event for `register` to listen to. It takes
+ *  `control` and `name` instead and is wired through RHF's Controller. */
+export function Field({ id, label, optional, error, as = "input", options, registration, control, name, ...rest }) {
   const errorId = `${id}-error`;
   const shared = {
     id,
@@ -33,11 +39,23 @@ export function Field({ id, label, optional, error, as = "input", options, regis
         {label} {optional && <span className="font-light text-muted">(optional)</span>}
       </label>
       {as === "select" ? (
-        <select {...shared}>
-          {options.map((o) => (
-            <option key={o}>{o}</option>
-          ))}
-        </select>
+        <Controller
+          name={name}
+          control={control}
+          render={({ field }) => (
+            <Select
+              id={id}
+              label={label}
+              name={field.name}
+              value={field.value}
+              onChange={field.onChange}
+              onBlur={field.onBlur}
+              options={options}
+              invalid={!!error}
+              aria-describedby={error ? errorId : undefined}
+            />
+          )}
+        />
       ) : as === "textarea" ? (
         <textarea rows={3} {...shared} />
       ) : (

@@ -16,7 +16,7 @@ export default function EnquiryForm({ idPrefix = "", initialCourse, title = "Sen
     course: COURSE_OPTIONS.includes(initialCourse) ? initialCourse : COURSE_OPTIONS[0],
     message: "",
   };
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues: defaults });
+  const { register, control, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues: defaults });
   const [sent, setSent] = useState(false);
 
   const onSubmit = (v) => {
@@ -44,7 +44,7 @@ export default function EnquiryForm({ idPrefix = "", initialCourse, title = "Sen
         error={errors.name} registration={register("name", nameRules)} />
       <Field id={id("phone")} label="Phone Number" type="tel" inputMode="tel" placeholder="10-digit mobile number" autoComplete="tel"
         error={errors.phone} registration={register("phone", phoneRules)} />
-      <Field id={id("course")} label="Interested Course" as="select" options={COURSE_OPTIONS} registration={register("course")} />
+      <Field id={id("course")} label="Interested Course" as="select" options={COURSE_OPTIONS} name="course" control={control} />
       <Field id={id("message")} label="Message" optional as="textarea" placeholder="Preferred timings, questions…"
         registration={register("message")} />
 

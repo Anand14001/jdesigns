@@ -106,6 +106,19 @@
 .modal-backdrop { animation: fade .25s ease; }
 .modal-panel { animation: pop .35s var(--ease-soft); }
 
+/* The course dropdown unfolds from the edge it is attached to -- `origin-top`
+   or `origin-bottom` is set on the list itself, depending on which way it had
+   room to open. */
+@keyframes select-open { from { opacity: 0; transform: translateY(-4px) scaleY(.96); } to { opacity: 1; transform: none; } }
+.select-menu { animation: select-open .18s var(--ease-soft); }
+.select-menu.origin-bottom { animation-name: select-open-up; }
+@keyframes select-open-up { from { opacity: 0; transform: translateY(4px) scaleY(.96); } to { opacity: 1; transform: none; } }
+
+/* On a phone the same list arrives as a sheet from the bottom of the window. */
+@keyframes select-sheet-up { from { transform: translateY(100%); } to { transform: none; } }
+.select-scrim { animation: fade .25s ease; }
+.select-sheet { animation: select-sheet-up .3s var(--ease-soft); }
+
 /* Hero photos zoom out slowly while their slide is showing */
 .hero-bg img { transform: scale(1.12); transition: transform 7s linear; }
 .hero .swiper-slide-active .hero-bg img { transform: scale(1); }
@@ -122,22 +135,51 @@
   .hero-bg img { object-position: var(--hero-focus-xl, var(--hero-focus-md, var(--hero-focus, 50% 50%))); }
 }
 
-/* Veil for a slide whose photo has a person in it.
-   The photo is 2.5:1, so `cover` always scales it by height and never crops it
-   vertically -- her chin stays pinned at 44% of the frame however tall the
-   window is. On a narrow screen the words cannot clear that and still fit, so
-   below 1200px the slide is split instead: the photo takes a band of its own at
-   the top and the words sit beneath it on the brand dark. There the veil is
-   only a soft landing into that dark. From 1200px the frame is wide enough to
-   hold both at once: the photo goes full-bleed, the words take the left column,
-   and the shade runs off to nothing well before she begins.
-   Mixed from --color-hero, not black, so the dark keeps the brand tint. */
+/* Veil for a slide whose photo has a person in it. Three compositions, so
+   three veils. Mixed from --color-hero, not black, so the dark keeps the brand
+   tint.
+
+   Below 768px the photo is the upright one and fills the whole slide, so the
+   veil carries the words on its own. Two gradients, each measured from the edge
+   the thing it protects is pinned to -- percentages would drift, because the
+   words are a fixed height at the bottom while the hero itself ranges from 560px
+   to a tall phone's full screen.
+   Up from the bottom: a near-solid bed under the buttons and headline, fading
+   out by 34rem so her face is never touched. Down from the top: a thin shade so
+   the header reads against a bright studio window. */
 .hero-veil-subject {
-  background: linear-gradient(180deg,
-    rgb(14 11 19 / 0) 55%,
-    rgb(14 11 19 / .45) 80%,
-    rgb(14 11 19 / .96) 100%);
+  background:
+    linear-gradient(to top,
+      rgb(14 11 19 / .97) 0,
+      rgb(14 11 19 / .95) 16rem,
+      rgb(14 11 19 / .88) 21rem,
+      rgb(14 11 19 / .72) 24rem,
+      rgb(14 11 19 / .40) 28rem,
+      rgb(14 11 19 / .14) 31rem,
+      rgb(14 11 19 / 0) 35rem),
+    linear-gradient(to bottom,
+      rgb(14 11 19 / .42) 0,
+      rgb(14 11 19 / 0) 9rem);
 }
+
+/* From 768px the wide 2.5:1 photo comes back. `cover` scales it by height and
+   never crops it vertically, so her chin stays pinned at 44% of the frame
+   however tall the window is, and the words cannot clear that and still fit.
+   The slide is split instead: the photo takes a band of its own at the top and
+   the words sit beneath it on the brand dark, where the veil is only a soft
+   landing into that dark. */
+@media (min-width: 48rem) {
+  .hero-veil-subject {
+    background: linear-gradient(180deg,
+      rgb(14 11 19 / 0) 55%,
+      rgb(14 11 19 / .45) 80%,
+      rgb(14 11 19 / .96) 100%);
+  }
+}
+
+/* From 1200px the frame is wide enough to hold both at once: the photo goes
+   full-bleed, the words take the left column, and the shade runs off to nothing
+   well before she begins. */
 @media (min-width: 75rem) {
   .hero-veil-subject {
     background: linear-gradient(90deg,
@@ -151,7 +193,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero-bg img { transform: none; transition: none; }
-  .modal-backdrop, .modal-panel { animation: none; }
+  .modal-backdrop, .modal-panel, .select-menu, .select-scrim, .select-sheet { animation: none; }
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
 

@@ -17,7 +17,7 @@ export default function BrochureForm({ initialCourse }) {
     phone: "",
     course: COURSE_OPTIONS.includes(initialCourse) ? initialCourse : COURSE_OPTIONS[0],
   };
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues: defaults });
+  const { register, control, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues: defaults });
   const [sent, setSent] = useState(false);
 
   const onSubmit = (v) => {
@@ -61,7 +61,7 @@ export default function BrochureForm({ initialCourse }) {
         error={errors.name} registration={register("name", nameRules)} />
       <Field id="brochure-phone" label="Phone Number" type="tel" inputMode="tel" placeholder="10-digit mobile number" autoComplete="tel"
         error={errors.phone} registration={register("phone", phoneRules)} />
-      <Field id="brochure-course" label="Interested Course" as="select" options={COURSE_OPTIONS} registration={register("course")} />
+      <Field id="brochure-course" label="Interested Course" as="select" options={COURSE_OPTIONS} name="course" control={control} />
 
       <Button type="submit" className="mt-6 w-full" onClick={() => setSent(false)}>
         {BROCHURE_URL ? "Download Brochure" : "Get Brochure on WhatsApp"}
